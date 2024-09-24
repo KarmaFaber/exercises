@@ -59,25 +59,125 @@ Gestiona la memoria asignada liberándola adecuadamente al final del programa.
 Recuerda inicializar correctamente el manejo de argumentos variables con va_start y finalizarlos con va_end.
 Asegúrate de que tu función create_linked_list construya correctamente la lista enlazada enlazando cada nodo al siguiente.*/
 
-#include <stdarg.h>
-#include <stdio.h>
+#include <stdarg.h>     //argumentos
+#include <stdio.h>      //malloc() / free() / printf()
+#include <stddef.h>     //size_t
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct s_list
 {
-	void			*content;
+	char			*content;
 	struct s_list	*next;
 }					t_list;
 
-void create_linked_list(int count, ...)
+static t_list   *ft_create_new_node(char *content, int str_len)  //funcion para crear un nodo nuevo
 {
+    t_list *new_node;
+   
+    // asignamos memoria a la estuctura del nodo 't_list'.
+    new_node = (t_list *)malloc(sizeof(t_list));    
+    if (!new_node)
+        return (NULL);
 
-
+    //asignamos memoria al nodo para content segun el tamaño de la cadena + 1('\0').
+    new_node -> content = (char *)malloc((str_len +1)*sizeof(char));    
+    if(!new_node->content)
+    {
+        free(new_node);
+        return (NULL);
+    }
+    //copiamos la cadena de caracteres en content del nodo creado. 
+    strncpy(new_node -> content, content, str_len);
+    new_node-> content[str_len]='\0';
+    //El siguiente nodo es NULL por defecto. 
+    new_node -> next = NULL;
+    return (new_node);
+    
 }
+
+static void ft_print_list(t_list *head)
+{
+    t_list *position;
+    
+    position = head;
+    while (position != NULL)
+    {
+        printf("%s -> ", position -> content); 
+        position = position->next;
+    }
+    printf("NULL\n");  // Añadir para indicar el final de la lista
+}
+
+
+t_list *ft_create_linked_list(int count, ...)
+{
+    int i;      //contador para recorrer argumentos
+    va_list args;
+    t_list *head;
+    t_list *current_node;
+    char *current_str;
+    
+    i = 0;
+    head = NULL;
+    current_node = NULL;
+    if (count<= 0)
+        return (NULL);
+
+    va_start(args, count);
+
+    //crear el primer nodo:
+    current_str = va_arg(args, char *);
+    head = ft_create_new_node(current_str, strlen(current_str));
+    if(!head)
+        return (NULL);
+
+    current_node = head;
+    
+    while (i < count - 1)
+    {
+        current_str= (va_arg(args, char *));
+        current_node -> next = ft_create_new_node(current_str, strlen(current_str));
+        if(!current_node->next)
+        {
+            va_end(args);
+            return (NULL);
+        }
+        current_node = current_node -> next;
+        i++;
+    }
+
+    va_end(args);
+    return(head);
+}
+
+static void ft_free_list(t_list *head)
+{
+    t_list *temp;
+    while (head != NULL)
+    {
+        temp = head;
+        head = head -> next;
+        free(temp->content);        //liberar memoria de content
+        free(temp);                 //liberar la memoria del nodo
+    }
+}
+
 
 int main (void)
 {
+    t_list *new_list;
+    
+    new_list = ft_create_linked_list(7, "a ", "bbbbbbb ", "cc", "dddddddddddddddd ", "eeeeeeee", "0", "xx");
 
+    if(new_list)
+    {
+        ft_print_list(new_list);        //imprimir la lista
+        ft_free_list(new_list);         //liberar la memoria usada por la lista enlazada simple
 
+    }
+    else 
+        printf("error alcrear la lista enlazada.\n");
 
     return (0);
 }
