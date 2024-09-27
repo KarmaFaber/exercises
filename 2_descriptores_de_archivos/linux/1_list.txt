@@ -1,0 +1,3 @@
+ejer_linux.txt
+list.txt
+output.txt

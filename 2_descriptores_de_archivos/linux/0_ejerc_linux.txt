@@ -1,0 +1,80 @@
+Ejercicio 1: Redirigir la salida estándar a un archivo
+Crea un script que redirija la salida estándar de un comando a un archivo.
+Usa un comando como echo o ls y redirígelo a un archivo llamado output.txt.
+Verifica que el archivo contiene la salida esperada.
+Solucion:
+echo "hola" > output.txt.       //mandar texto a un archivo nuevo
+ls > list.tx                    // listas los archivos del dir actual y mandarlo a un archivo nuevo
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+ 
+Ejercicio 2: Redirigir la entrada estándar desde un archivo
+Crea un archivo de texto llamado input.txt con varias líneas de texto.
+Luego, crea un script que lea el contenido de input.txt utilizando redirección de entrada (<).
+El script debe contar cuántas líneas tiene el archivo y mostrar el número de líneas.
+Solucion:
+
+
+ --------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 3: Redirigir la salida de error a un archivo
+Escribe un comando que genere un error (por ejemplo, intenta listar un archivo inexistente).
+Redirige el error a un archivo llamado error.log.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 4: Redirigir tanto la salida estándar como la salida de error
+Modifica el ejercicio anterior para redirigir tanto la salida estándar como la salida de error al archivo output.log.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 5: Usar el descriptor de archivo 3 para redirigir la salida
+Redirige la salida estándar de un comando utilizando el descriptor de archivo 3.
+Crea un archivo descriptor3.txt y redirige la salida de un comando a través de este descriptor.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 6: Leer desde un descriptor de archivo
+Usa el descriptor de archivo 3 para leer datos desde un archivo.
+Crea un archivo leer.txt y ábrelo con el descriptor 3 para leer su contenido línea por línea.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 7: Redirigir múltiples descriptores
+Crea un script que redirija la salida estándar a un archivo y la salida de error a otro archivo.
+Usa un comando que genere salida estándar y errores para verificar ambos archivos.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 8: Redirección entre procesos
+Utiliza redirección de descriptores de archivo para conectar dos procesos.
+Crea un archivo de texto y usa un descriptor de archivo para redirigir su contenido a través de cat y grep.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 9: Redirigir la salida estándar a /dev/null
+Crea un script que redirija la salida de un comando a /dev/null (la "papelera" en Linux), ignorando la salida.
+Solucion:
+
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 10: Crear un descriptor de archivo personalizado
+Escribe un script que use un descriptor de archivo personalizado (como 4 o 5) para escribir en un archivo diferente de stdout y stderr.
+Usa el descriptor de archivo 4 para redirigir la salida a un archivo personalizado.txt.
+Solucion:
+
+
+ 
+
+ --------------------------------#---------------------------------------#--------------------------------------------------------------

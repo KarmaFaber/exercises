@@ -1,0 +1,247 @@
+Ejercicio 1: Redirigir la salida estándar a un archivo
+Crea un script que redirija la salida estándar de un comando a un archivo.
+Usa un comando como echo o ls y redirígelo a un archivo llamado output.txt.
+Verifica que el archivo contiene la salida esperada.
+Solucion:
+echo "hola" > output.txt.       //mandar texto a un archivo nuevo
+ls > list.tx                    // listas los archivos del dir actual y mandarlo a un archivo nuevo
+mv output.txt. 1_output.txt.    //cambiar nombre de archivo: mv nombre_viejo nombre_nuevo
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+ 
+Ejercicio 2: Redirigir la entrada estándar desde un archivo
+Crea un archivo de texto llamado input.txt con varias líneas de texto.
+Luego, crea un script que lea el contenido de input.txt utilizando redirección de entrada (<).
+El script debe contar cuántas líneas tiene el archivo y mostrar el número de líneas.
+
+
+wc -l <fichero> número de líneas (cuenta \n de cada linea). te dara el numero de lineas en base al numero de '\n' que encuentre. 
+wc -c <fichero> número de bytes
+wc -m <fichero> imprime el número de caracteres
+wc -L <fichero> imprime la longitud de la línea más larga
+wc -w <fichero> imprime el número de palabras
+
+
+Solucion:
+echo "texto" > 2_input.txt
+wc -l < 2_input.txt
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 3: Redirigir la salida de error a un archivo
+Escribe un comando que genere un error (por ejemplo, intenta listar un archivo inexistente).
+Redirige el error a un archivo llamado error.log.
+
+> redirige la salida estándar 1 (descriptor 1) al archivo elegido.
+2> redirige la salida de error (descriptor 2) al archivo especificado.
+
+Solucion:
+ls error.txt 2> 3_error.log
+
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 4: Redirigir tanto la salida estándar como la salida de error
+Modifica el ejercicio anterior para redirigir tanto la salida estándar como la salida de error al archivo output.log.
+
+
+Valor entero	Nombre	Constante simbólica de <unistd.h>	Flujo de archivo de <stdio.h>
+
+0	Entrada estándar	STDIN_FILENO	stdin   read
+1	Salida estándar	    STDOUT_FILENO	stdout  write  
+2	Error estándar	    STDERR_FILENO	stderr  error
+
+El operador &> en Bash es utilizado para redirigir tanto la salida estándar (stdout) 
+como la salida de error (stderr) a un mismo destino, que generalmente es un archivo.
+
+Solucion:
+
+ls error.txt &> 1_output.txt 
+
+Otra Solucion (lo mismo):
+ls error.txt > 1_output.txt 2>&1
+
+> redirige la salida estándar a 1_output.txt.
+2>&1 redirige la salida de error (descriptor 2) al mismo lugar que la salida estándar (descriptor 1).
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 5: Usar el descriptor de archivo 3 para redirigir la salida
+Redirige la salida estándar de un comando utilizando el descriptor de archivo 3.
+Crea un archivo descriptor3.txt y redirige la salida de un comando a través de este descriptor.
+
+Explicacion: asociacion de archivo al descriptor de archivo:
+Este ejercicio te enseña cómo trabajar con descriptores de archivo personalizados en Bash. Normalmente, los descriptores de archivo más comunes son:
+1 (stdout): salida estándar
+2 (stderr): salida de error
+
+En este ejercicio, estás creando y utilizando un nuevo descriptor de archivo personalizado (3) para redirigir la salida estándar de un comando hacia un archivo.
+Descripción de los comandos:
+    1. exec 3> descriptor3.txt
+exec es un comando que ejecuta un comando o cambia los descriptores de archivo del shell actual.
+3> significa que estás creando un nuevo descriptor de archivo con el número 3 y lo estás asociando al archivo descriptor3.txt para escritura.
+Este comando abre el archivo descriptor3.txt y asocia el descriptor de archivo 3 con ese archivo. Todo lo que se redirija al descriptor 3 (>&3) se escribirá en descriptor3.txt.
+Resultado: Cualquier comando que envíe su salida al descriptor 3 escribirá en descriptor3.txt.
+
+    2. echo "Usando descriptor 3" >&3:
+echo "Usando descriptor 3" genera una cadena de texto.
+>&3 redirige la salida del comando echo al descriptor de archivo 3, que está asociado con el archivo descriptor3.txt.
+En este caso, la cadena "Usando descriptor 3" se guarda en el archivo descriptor3.txt.
+
+    3. exec 3>&-:
+Este comando cierra el descriptor de archivo 3, liberando su asociación con el archivo descriptor3.txt.
+3>&- indica que el descriptor de archivo 3 ya no está disponible para más redirecciones.
+Resultado: Después de este comando, ya no puedes escribir en descriptor3.txt usando el descriptor 3.
+
+Codigo explicado:
+
+exec 3> 5_descriptor3.txt           # Abre el descriptor 3 para escritura en el archivo
+echo "Usando descriptor 3" >&3      # Escribe en el archivo a través del descriptor 3
+echo "numero de caracteres:" >&3    # Muestra un mensaje en la salida estándar
+wc -c < 5_descriptor3.txt >&3       # Cuenta los caracteres y redirige la salida al descriptor 3 (<) en vez de la salida estandar (1)-terminal
+exec 3>&-                           # Cierra el descriptor 3
+
+Solucion:
+
+exec 3> 5_descriptor3.txt
+echo "Usando descriptor 3" >&3
+echo "numero de caracteres: " >&3 | wc -c < 5_descriptor3.txt >&3
+echo "numero de lineas: " >&3 | wc -l < 5_descriptor3.txt >&3
+exec 3>&-
+
+
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 6: Leer desde un descriptor de archivo
+Usa el descriptor de archivo 3 para leer datos desde un archivo.
+Crea un archivo leer.txt y ábrelo con el descriptor 3 para leer su contenido línea por línea.
+Explicacion:
+echo -e: El -e permite la interpretación de caracteres especiales. Sin esta opción, \n se imprimiría como los dos caracteres \ y n, en lugar de ser interpretado como un salto de línea.
+
+echo -e "hola\ncaracola\nloca" > 6_leer.txt        #crea un archivo con texto
+exec 3< 6_leer.txt                                 # Abre el descriptor 3 para lectura en el archivo
+while read -r line <&3; do                         # lee en el archivo a través del descriptor 3 con el bucle condicional
+do
+  echo "Reading line: $line"
+done
+exec 3<&-                                          # Cierra el descriptor 3 para lectura
+
+
+Solucion:
+
+echo -e "hola\ncaracola\nloca" > 6_leer.txt
+exec 3< 6_leer.txt                           
+while read -r line <&3; do 
+    echo "Reading line: $line"
+done
+exec 3<&-                                         
+
+
+
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 7: Redirigir múltiples descriptores
+Crea un script que redirija la salida estándar a un archivo y la salida de error a otro archivo.
+Usa un comando que genere salida estándar y errores para verificar ambos archivos.
+Explicacion:
+listamos todos los archivos del directoria actual en el archivo 7_text.txt 
+y a la vez si no hay un error en la busqueda del archivo arndom.txt se mandara al archivo 7_error.txt
+
+Solucion:
+
+ls . random.txt > 7_text.txt 2> 7_error.txt
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 8: Redirección entre procesos
+Utiliza redirección de descriptores de archivo para conectar dos procesos.
+Crea un archivo de texto y usa un descriptor de archivo para redirigir su contenido a través de cat y grep.
+
+Explicacion:
+Los operadores:
+    > (crea archivo, sobreescribe si existe)
+    >> (crea archivo, concatena si existe) 
+
+
+Símbolo:	Descripción:
+>	        Redirecciona stdout hacía un archivo. Lo crea si no existe, si existe lo sobreescribe.
+            ls -l > lista.txt (La salida del comando se envía a un archivo en vez de la terminal.)
+
+>>	        Redirecciona stdout hacía un archivo. Lo crea si no existe, si existe concatena la salida al final de este.
+            s -ef >> procesos.txt (Concatena al archivo procesos.txt la salida del comando.)
+
+<	        Redirecciona stdin desde un archivo. El contenido de un archivo es la entrada o input del comando.
+            mail user < texto.txt (El cuerpo del correo a enviar proviene desde un archivo, en vez del teclado).)
+
+2>
+2>>	        Redirecciona stderr hacía un archivo. Crea (>) o concatena (>>) la salida de errores a un archivo. (ver ejemplos)
+
+1>&2	    Redirecciona stdout hacía donde stderr apunte. (ver ejemplos)
+
+2>&1	    Redirecciona stderr hacía donde stdout apunte. (ver ejemplos)
+
+
+grep [opciones] pattern [ARCHIVO]
+
+    grep: la instrucción de comando
+    [opciones]: modificadores del comando
+    pattern: el patrón que queremos encontrar con la búsqueda
+    [ARCHIVO]: el archivo en el que estás realizando la búsqueda
+Encontrar una palabra sin tener en cuenta las mayúsculas y minúsculas: agregar la opción -i. (grep -i find <archivo>)
+Conteo de palabras que coinciden con la búsqueda: agrega la opción -c. (grep -c find <archivo>)
+
+Ejemplo grep:
+$ grep find <archivo>
+    find: la palabra que estás buscando
+    archivo: el archivo en el que estás buscando la palabra
+
+Solucion:
+
+exec 3< 6_leer.txt 
+grep "caracola" <&3
+exec 3<&-
+
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 9: Redirigir la salida estándar a /dev/null
+Crea un script que redirija la salida de un comando a /dev/null (la "papelera" en Linux), ignorando la salida.
+Solucion:
+
+echo "Esto no aparecerá en pantalla" > /dev/null
+ 
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 10: Crear un descriptor de archivo personalizado
+Escribe un script que use un descriptor de archivo personalizado (como 4 o 5) para escribir en un archivo diferente de stdout y stderr.
+Usa el descriptor de archivo 4 para redirigir la salida a un archivo personalizado.txt.
+Solucion:
+
+
+exec 4> personalizado.txt
+echo "Salida con descriptor 4" >&4
+exec 4>&-
+
+
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 11:
+ Para renombrar archivos que tienen la estructura:
+     ft_*_own.c a ft_*.c
+     ft_*_bonus.c a ft_*.c
+
+
+ Solucion:
+
+for file in ft_*_own.c; do
+    mv "$file" "${file/_own/}"
+done
+
+for file in ft_*_bonus.c; do
+    mv "$file" "${file/_bonus/}"
+done
+
+ls > lits.txt
+
+
+--------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejercicio 12:
+Para renombrar archivos que tienen la estructura ft_*.c a ft_*_bonus.c:
+
+Solucion:
+for file in ft_*.c; do
+    mv "$file" "${file%.c}_bonus.c"
+done
+
+ls > lits.txt
+
+--------------------------------#---------------------------------------#--------------------------------------------------------------

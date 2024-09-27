@@ -1,0 +1,11 @@
+.:
+0_ejerc_linux.txt
+1_list.txt
+1_output.txt
+2_input.txt
+3_error.log
+5_descriptor3.txt
+6_leer.txt
+7_error.txt
+7_text.txt
+ejer_linux.txt

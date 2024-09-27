@@ -1,0 +1,5 @@
+Usando descriptor 3
+numero de caracteres: 
+43
+numero de lineas: 
+4

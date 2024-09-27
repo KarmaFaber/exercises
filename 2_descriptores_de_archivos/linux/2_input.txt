@@ -1,0 +1,11 @@
+Este es un texto de prueba 
+que contiene exactamente trescientas letras, 
+espacios y signos de puntuación. 
+Se utiliza para realizar 
+diversas pruebas en sistemas que requieren 
+una longitud específica de caracteres. 
+Con este contenido, puedes verificar 
+la funcionalidad de scripts o prog.
+
+
+
