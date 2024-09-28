@@ -245,3 +245,27 @@ done
 ls > lits.txt
 
 --------------------------------#---------------------------------------#--------------------------------------------------------------
+Ejericio 13:
+quitar _own, _bonus, listar, quitar Makefile, *.h de la lista, poner losnombres de archivo en computos de 3 por linea con '\' al final:
+
+#!/bin/bash
+
+# Renombrar archivos
+for file in ft_*_own.c; do
+    mv "$file" "${file/_own/}"
+done
+
+for file in ft_*_bonus.c; do
+    mv "$file" "${file/_bonus/}"
+done
+
+# listar
+{
+    echo "SRC := " 
+    ls | awk '{for(i=1; i<=NF; i++) { printf "%s \\\n", $i }}' 
+} > lits.txt
+
+# quitar archivos que no son funciones:
+sed -i '/libft.h/d; /limpiar_libft.sh/d; /lits.txt/d; /Makefile/d' lits.txt
+
+
