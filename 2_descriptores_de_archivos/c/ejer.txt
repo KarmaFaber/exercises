@@ -2,40 +2,43 @@
 
 1.Lectura de un archivo de texto: Crea un programa que abra un archivo de texto, 
 lea su contenido y lo muestre en la consola. Asegúrate de manejar correctamente los errores de apertura y lectura.
-
+OK
 
 2.Contador de caracteres: Implementa un programa que abra un archivo y cuente el número de caracteres en él. 
 Usa read para leer el contenido del archivo en bloques y actualizar el contador.
-
+OK x2
 
 3.Lectura y escritura en un archivo: Escribe un programa que abra un archivo existente, 
 lea su contenido y lo copie a un nuevo archivo. Debes usar read para leer del archivo original y write para escribir en el nuevo archivo.
 
 
-4.Lectura de líneas: Crea un programa que lea un archivo línea por línea usando read. 
+4.Lectura de líneas: Crea un programa que devuelva el numero de lineas.
+OK x2
+
+5.Lectura de líneas: Crea un programa que lea un archivo línea por línea usando read. 
 Define un tamaño fijo para las líneas y utiliza un búfer.
 
 
-5.Lectura en bloques: Diseña un programa que lea un archivo en bloques de 1024 bytes. 
+6.Lectura en bloques: Diseña un programa que lea un archivo en bloques de 1024 bytes. 
 Debes mostrar cada bloque leído en la consola y continuar hasta llegar al final del archivo.
 
 
-6.Lectura de un archivo hasta EOF: Crea un programa que lea un archivo hasta el final (EOF) y 
+7.Lectura de un archivo hasta EOF: Crea un programa que lea un archivo hasta el final (EOF) y 
 cuente cuántas veces aparece un carácter específico en el archivo. El carácter se debe ingresar por el usuario.
 
 
-7.Lectura y búsqueda de palabras: Implementa un programa que abra un archivo y busque una palabra específica, 
+8.Lectura y búsqueda de palabras: Implementa un programa que abra un archivo y busque una palabra específica, 
 leyendo el archivo en bloques. Indica cuántas veces aparece la palabra.
 
 
-8.Intercambio de contenido entre archivos: Escribe un programa que lea dos archivos y los intercambie, 
+9.Intercambio de contenido entre archivos: Escribe un programa que lea dos archivos y los intercambie, 
 de modo que el contenido del primer archivo se copie en el segundo y viceversa.
 
 
-8.Lectura de un archivo binario: Crea un programa que abra un archivo binario y lea su contenido. 
+10.Lectura de un archivo binario: Crea un programa que abra un archivo binario y lea su contenido. 
 Debes mostrar el contenido en formato hexadecimal en la consola.
 
 
-10.Lectura y edición de archivos: Desarrolla un programa que lea un archivo y realice algunas modificaciones 
+11.Lectura y edición de archivos: Desarrolla un programa que lea un archivo y realice algunas modificaciones 
 (por ejemplo, reemplazar un carácter específico en todo el archivo) y luego escriba el resultado en un nuevo archivo.
 
