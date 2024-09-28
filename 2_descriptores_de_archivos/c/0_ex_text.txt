@@ -1,3 +1,4 @@
+hola caracola 
 La programación es una herramienta poderosa 
 que transforma ideas en realidad. Aprender a programar puede 
 abrir muchas puertas en el 
@@ -12,4 +13,3 @@ siempre dispuesta a ayudar. La práctica
 diaria mejora las habilidades y permite enfrentar nuevos desafíos. 
 En resumen, programar es un viaje continuo 
 lleno de oportunidades y aprendizajes.
-
