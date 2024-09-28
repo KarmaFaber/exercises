@@ -10,8 +10,6 @@ Define un tamaño fijo para las líneas y utiliza un búfer.
 #include <fcntl.h>          // O_RDONLY
 #include <string.h>         // memcpy
 
-
-
 //en este caso solo contamos el numero de lineas limitado por count_to_read y el buffer de read
 static size_t ft_line_counter (char *buffer, ssize_t bytes_read)
 {
@@ -49,6 +47,7 @@ int main (void)
     ssize_t bytes_readed;
     size_t count_to_read = 15;
     size_t line_count=0;
+    char buffer [1000];
     
 
     fd = open("0_ex_text.txt", O_RDONLY);
