@@ -1,0 +1,14 @@
+1.Lectura de un archivo de texto: Crea un programa que abra un archivo de texto, 
+lea su contenido y lo muestre en la consola. Asegúrate de manejar correctamente los errores de apertura y lectura.
+OK
+
+2.Contador de caracteres: Implementa un programa que abra un archivo y cuente el número de caracteres en él. 
+Usa read para leer el contenido del archivo en bloques y actualizar el contador.
+OK x2
+
+3.Lectura y escritura en un archivo: Escribe un programa que abra un archivo existente, 
+lea su contenido y lo copie a un nuevo archivo. Debes usar read para leer del archivo original y write para escribir en el nuevo archivo.
+OK
+
+4.Lectura de líneas: Crea un programa que devuelva el numero de lineas.
+OK x2

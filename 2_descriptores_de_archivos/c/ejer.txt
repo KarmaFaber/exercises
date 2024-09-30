@@ -45,8 +45,8 @@ Debes mostrar cada bloque leído en la consola y continuar hasta llegar al final
 
 
 7.Lectura de un archivo hasta EOF: Crea un programa que lea un archivo hasta el final (EOF) y 
-cuente cuántas veces aparece un carácter específico en el archivo. El carácter se debe ingresar por el usuario.
-
+cuente cuántas veces aparece un carácter específico en el archivo. 
+OK
 
 8.Lectura y búsqueda de palabras: Implementa un programa que abra un archivo y busque una palabra específica, 
 leyendo el archivo en bloques. Indica cuántas veces aparece la palabra.
@@ -54,7 +54,7 @@ leyendo el archivo en bloques. Indica cuántas veces aparece la palabra.
 
 9.Intercambio de contenido entre archivos: Escribe un programa que lea dos archivos y los intercambie, 
 de modo que el contenido del primer archivo se copie en el segundo y viceversa.
-
+OK
 
 10.Lectura de un archivo binario: Crea un programa que abra un archivo binario y lea su contenido. 
 Debes mostrar el contenido en formato hexadecimal en la consola.
