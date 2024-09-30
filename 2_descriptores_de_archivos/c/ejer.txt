@@ -10,13 +10,34 @@ OK x2
 
 3.Lectura y escritura en un archivo: Escribe un programa que abra un archivo existente, 
 lea su contenido y lo copie a un nuevo archivo. Debes usar read para leer del archivo original y write para escribir en el nuevo archivo.
-
+OK
 
 4.Lectura de líneas: Crea un programa que devuelva el numero de lineas.
 OK x2
 
 5.Lectura de líneas: Crea un programa que lea un archivo línea por línea usando read. 
 Define un tamaño fijo para las líneas y utiliza un búfer.
+
+    Desglosemos lo que debes hacer:
+    1. Leer el archivo línea por línea:
+        Aunque en C existen funciones como fgets() para leer líneas completas, en este ejercicio debes usar la función read(). Esta función no "sabe" lo que es una línea, solo lee una cantidad fija de bytes. Por lo tanto, tendrás que procesar manualmente el contenido que lees para detectar las líneas, identificadas por el carácter de salto de línea ('\n').
+    2. Tamaño fijo para las líneas:
+        Debes definir un tamaño máximo para cada línea. Por ejemplo, si decides que las líneas tienen un tamaño máximo de 100 caracteres, entonces necesitas leer el archivo en bloques que no superen esa longitud y detenerte cuando encuentres un salto de línea (\n) o cuando llenes ese espacio.
+    3. Utilizar un búfer:
+        Un búfer es un espacio temporal en memoria que usas para almacenar datos que estás procesando. En este caso, deberás usar un búfer para almacenar los datos que lees del archivo y procesarlos línea por línea.
+
+    Pasos para resolver el ejercicio:
+    1. Abrir el archivo con la función open() y gestionar posibles errores.
+    2. Leer el archivo con la función read(), utilizando un tamaño fijo de bloque para el búfer.
+    3. Procesar lo leído: A medida que lees el archivo, debes ir revisando los bytes leídos para detectar el carácter de salto de línea ('\n'). Cuando encuentres una línea completa, la imprimes (o la procesas de alguna manera).
+    4. Manejar líneas incompletas: A veces, la lectura puede terminar justo en medio de una línea (por ejemplo, si el búfer es demasiado pequeño). Tendrás que manejar estos casos para que las líneas no se corten abruptamente.
+    5. Cerrar el archivo cuando termines de leerlo.
+
+    Ejemplo de cómo podría funcionar:
+    1. Definimos un tamaño de línea máximo (digamos 100 bytes).
+    2. Usamos un búfer de lectura para leer el archivo en bloques.
+    3. Mientras lees, vas acumulando los caracteres en otro búfer hasta que encuentres un salto de línea ('\n') o llenes el búfer.
+    4. Cada vez que encuentres un salto de línea o llenes el búfer, imprimes la línea y comienzas a acumular la siguiente.
 
 
 6.Lectura en bloques: Diseña un programa que lea un archivo en bloques de 1024 bytes. 
