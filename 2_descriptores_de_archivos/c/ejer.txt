@@ -71,3 +71,5 @@ Debes mostrar el contenido en formato hexadecimal en la consola.
 11.Lectura y edición de archivos: Desarrolla un programa que lea un archivo y realice algunas modificaciones 
 (por ejemplo, reemplazar un carácter específico en todo el archivo 'a' se reemplaza por 'x') y luego escriba el resultado en un nuevo archivo.
 
+12. GNL ejercicio guiado. 
+

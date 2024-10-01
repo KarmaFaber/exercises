@@ -49,7 +49,7 @@ int main (void)
     //leer el archivo en bloques y contar las lineas
     while ((bytes_readed=read(fd, buffer, BUFFER_SIZE)) > 0)
     {
-        //contar laslineas del bufferleido:
+        //contar las lineas del buffer leido:
         line_count += ft_line_counter(buffer, bytes_readed);
 
         //comprobar si el ultimo caracter de la linea es un salto delinea
