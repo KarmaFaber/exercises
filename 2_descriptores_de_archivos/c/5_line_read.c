@@ -181,11 +181,10 @@ static char *ft_process_line (int fd)
     char *readed_buffer;
     char *line;
     char *temp;
-    //size_t line_len = 0;
     ssize_t i = 0;
     ssize_t readed_bytes;
     
-    i = 0;
+    
     line =NULL;
     //en vez de buffer random hacemos directamente calloc para el buffer de lectura
     readed_buffer =ft_calloc (BUFFER_SIZE + 1, sizeof(char));
@@ -194,7 +193,7 @@ static char *ft_process_line (int fd)
     
     readed_bytes = read (fd, readed_buffer, BUFFER_SIZE);
     // Manejo de errores en la lectura: -1 o 0:
-    /*ya hemos reservado memoria para cup_buffer, si readed_bytes ==0 (EOF)
+    /*ya hemos reservado memoria para readed_buffer, si readed_bytes ==0 (EOF)
     o readed_bytes = -1 (error), deberemos linerart la memoria para no tener leaks de memoria. 
     y retornamos NULL. */
     if (readed_bytes <= 0)
@@ -202,6 +201,8 @@ static char *ft_process_line (int fd)
         free(readed_buffer);
         return (NULL);
     }
+
+    i = 0;
     while (i < readed_bytes)
     {
         if (readed_buffer[i] == '\n')
@@ -214,69 +215,16 @@ static char *ft_process_line (int fd)
         }
         i++;
     }
+    
     temp=ft_substr(readed_buffer, 0, readed_bytes);
     line = ft_strjoin(line, temp);
+
     free(temp);
-
-    if (line && ft_strlen(line) > 0)
-        return (line);
+    free(readed_buffer);
     
-
-    //free(line);
-    //free(readed_buffer);
     return (line); 
 }
 
-
-/*
-static char *ft_process_line(int fd)
-{
-    char *readed_buffer;
-    char *line = NULL;
-    char *temp;
-    ssize_t readed_bytes;
-    ssize_t i;
-
-    // Usamos calloc para garantizar que el buffer está inicializado a 0
-    readed_buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-    if (!readed_buffer)
-        return (NULL);
-    
-    // Leer desde el archivo en bloques del tamaño del buffer
-    while ((readed_bytes = read(fd, readed_buffer, BUFFER_SIZE)) > 0)
-    {
-        i = 0;
-        // Recorremos el buffer hasta encontrar el '\n' o el final
-        while (i < readed_bytes)
-        {
-            if (readed_buffer[i] == '\n') 
-            {
-                // Si encontramos un '\n', terminamos la línea
-                temp = ft_substr(readed_buffer, 0, i);  // Extraemos hasta el salto de línea
-                line = ft_strjoin(line, temp);  // Concatenar si tenemos datos parciales de antes
-                free(temp);
-                free(readed_buffer);
-                return (line); // Devolvemos la línea sin el '\n'
-            }
-            i++;
-        }
-        // Acumulamos lo leído en la línea si no hemos encontrado '\n'
-        temp = ft_substr(readed_buffer, 0, readed_bytes);
-        line = ft_strjoin(line, temp);
-        free(temp);
-    }
-
-    free(readed_buffer);
-    
-    // Si el archivo no termina con '\n', devolvemos lo que quede en el buffer
-    if (line && ft_strlen(line) > 0)
-        return (line);
-    
-    // Si no hay más datos por leer y no hemos construido una línea, devolver NULL
-    free(line);
-    return (NULL);
-}
-*/
 
 
 int main (void)
