@@ -1,15 +1,20 @@
-hola caracola unicornio
-La programación es una herramienta poderosa 
-que transforma ideas en realidad. Aprender a programar puede unicornio
-abrir muchas puertas en el 
-mundo laboral. Existen múltiples lenguajes, cada uno con sus características 
-y usos. La unicornio lógica detrás de la programación 
-se basa en resolver problemas y crear soluciones eficientes. 
-Los errores son parte del proceso y enseñan más que los éxitos. La colaboración en proyectos
-de software fomenta el aprendizaje y la creatividad. 
-La documentación adecuada es fundamental para unicornio entender y mantener el 
-código a lo largo del tiempo. La comunidad de desarrolladores es amplia y 
-siempre dispuesta a ayudar. La práctica 
-diaria mejora las habilidades y permite enfrentar nuevos desafíos. 
-En resumen, programar es un viaje continuo unicornio
-lleno de oportunidades y aprendizajes.
+hello 
+snail
+ unicorn
+The programming is a powerful tool 
+that transforms ideas 
+into reality. Learning to program can unicorn
+open many doors in the 
+job market. 
+There are multiple languages, each with its own characteristics 
+and uses. The unicorn
+logic behind programming 
+is based
+on solving problems and creating efficient solutions. 
+Mistakes are part of the process and teach more than successes. Collaboration in software projects 
+promotes learning and creativity. 
+Proper documentation is essential to unicorn understand and maintain the 
+code over time. The developer community is broad and 
+always willing to help. Daily practice 
+improves skills and allows facing new challenges. 
+In summary, programming is a continuous journey uni
