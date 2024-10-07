@@ -1,20 +1,22 @@
-hello 
-snail
- unicorn
-The programming is a powerful tool 
-that transforms ideas 
-into reality. Learning to program can unicorn
-open many doors in the 
-job market. 
-There are multiple languages, each with its own characteristics 
-and uses. The unicorn
-logic behind programming 
-is based
-on solving problems and creating efficient solutions. 
-Mistakes are part of the process and teach more than successes. Collaboration in software projects 
-promotes learning and creativity. 
-Proper documentation is essential to unicorn understand and maintain the 
-code over time. The developer community is broad and 
-always willing to help. Daily practice 
-improves skills and allows facing new challenges. 
-In summary, programming is a continuous journey uni
+1hello 1
+2snail2
+3 unicorn3
+4The programming is a powerful tool4 
+5that transforms ideas 5
+6into reality. Learning to program can unicorn6
+7open many doors in the 7
+8job market. 8
+91g56df1gdsf6g16dfg9
+10There are multiple languages, each with its own characteristics 10
+11and uses. The unicorn11
+12logic behind programming 12
+13is based13
+14on solving problems and creating efficient solutions. 14
+15Mistakes are part of the process and teach more than successes. Collaboration in software projects 15
+16promotes learning and creativity. Proper documentation is essential to unicorn understand and maintain the 16
+17code over time. The developer community is broad and 17
+18always willing to help. Daily practice 18
+19improves skills and allows facing new challenges. 19
+20In summary, programming is a continuous journey uni20
+21
+

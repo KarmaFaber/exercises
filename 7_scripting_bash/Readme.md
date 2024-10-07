@@ -1,7 +1,30 @@
-# Description
+# Ejercicios Scripting
+
+
+1. Crear un archivo:
+```shell
+touch archivo.txt
+```
+o también (con fd):
+```shell
+> archivo.txt
+```
+
+2. Crear un archivo y añadir contenido a este en el mismo comando:
+```shell
+echo "texto" > archivo_2.txt
+```
+3. 
 
 
 
+
+
+
+```shell
+
+
+```
 
 
 
