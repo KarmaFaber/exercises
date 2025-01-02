@@ -1,4 +1,4 @@
-# Ejercicios de Descriptores de Archivo y Pipes
+# Ejercicios de Descriptores de Archivo y Pipes en Bash
 
 #➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en Bash──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
 

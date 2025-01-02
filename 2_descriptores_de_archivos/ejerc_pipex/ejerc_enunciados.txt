@@ -32,42 +32,109 @@
 10. **Redirección de descriptor específico:**
     - Ejecuta un script que escriba mensajes a los descriptores de archivo 1, 2, y 3, y redirige cada uno a diferentes archivos.
 
+11. **Concatenar la salida de dos comandos:**
+    - Usa un pipe para combinar la salida de los comandos `cat input.txt` y `echo "Nueva Línea"` en un archivo llamado `combined.txt`.
+
+12. **Dividir la salida de un comando:**
+    - Usa un pipe para redirigir la salida de `ls -l` a dos archivos diferentes (`file1.txt` y `file2.txt`) utilizando el comando `tee`.
+
+13. **Redirigir y anexar:**
+    - Escribe un comando que redirija la salida estándar del comando `echo "Texto adicional"` al final de un archivo `output.txt`.
+
+14. **Ignorar salida estándar:**
+    - Ejecuta el comando `ls` y redirige su salida estándar a `/dev/null` para que no se muestre en la terminal.
+
+15. **Combinar salida estándar y errores:**
+    - Usa `ls nonexistentfile` para generar un error y redirige tanto la salida estándar como el error estándar al archivo `output.log`.
+
+16. **Pipe con filtrado:**
+    - Usa un pipe para pasar la salida de `ps aux` al comando `grep bash` y redirige el resultado al archivo `bash_processes.txt`.
+
+17. **Procesar varias entradas con un pipe:**
+    - Usa el comando `cat` para combinar los archivos `file1.txt` y `file2.txt`, y pasa la salida al comando `sort` para ordenarla. Guarda el resultado en `sorted_combined.txt`.
+
+18. **Duplicar la salida de un comando:**
+    - Usa un pipe con el comando `tee` para redirigir la salida de `echo "Hola mundo"` tanto a la pantalla como al archivo `output.txt`.
+
+19. **Usar descriptor de archivo específico:**
+    - Ejecuta un script que redirija el descriptor 3 hacia un archivo `custom_fd_output.txt` y escribe datos en ese descriptor con `echo "Mensaje" >&3`.
+
+20. **Error intencionado y manejo con tuberías:**
+    - Intenta listar un archivo inexistente con `ls nonexistentfile` y pasa el error estándar al comando `grep "No such"` para filtrarlo. Guarda el resultado en `errors_filtered.txt`.
+
+
 
 #➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en C──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
 
-11. **Abrir y cerrar archivos:**
+1. **Abrir y cerrar archivos:**
     - Escribe un programa que abra un archivo `file.txt`, lea su contenido y lo imprima en la salida estándar.
 
-12. **Redirección con `dup2`:**
-    - Redirige la salida estándar para que escriba en un archivo llamado `output.txt`.
+2. **Crear y escribir en un archivo:**
+    - Implementa un programa que cree un archivo `output.txt` y escriba "Hola, mundo!" en él.
 
-13. **Pipe básico:**
+3. **Leer desde la entrada estándar y escribir en un archivo:**
+    - Escribe un programa que lea texto desde la entrada estándar y lo guarde en un archivo llamado `input_copy.txt`.
+
+4. **Copiar el contenido de un archivo:**
+    - Escribe un programa que copie el contenido de `source.txt` a `destination.txt`.
+
+5. **Redirección de salida estándar:**
+    - Usa `dup2` para redirigir la salida estándar a un archivo llamado `stdout_redirect.txt`.
+
+6. **Redirección de entrada estándar:**
+    - Redirige la entrada estándar para que lea desde un archivo `input.txt`.
+
+7. **Pipe básico:**
     - Implementa un programa que cree un pipe, escriba "Hola, pipe!" en un extremo y lo lea del otro extremo para imprimirlo en pantalla.
 
-14. **Multiprocesos con `fork` y pipes:**
+8. **Multiprocesos con `fork` y pipes:**
     - Crea un programa donde el proceso padre escriba en el pipe y el proceso hijo lea del pipe e imprima el contenido.
 
-15. **Redirección combinada:**
-    - Usa `dup2` para redirigir tanto la salida estándar como la entrada estándar a un archivo diferente.
+9. **Redirección combinada:**
+    - Usa `dup2` para redirigir tanto la salida estándar como la entrada estándar a archivos diferentes.
 
-16. **Pipes múltiples:**
+10. **Pipes múltiples:**
     - Implementa un programa que use dos pipes para conectar tres procesos:
-      - Proceso 1 escribe en el pipe 1.
-      - Proceso 2 lee del pipe 1, transforma el contenido y escribe en el pipe 2.
-      - Proceso 3 lee del pipe 2 y lo imprime.
+        - Proceso 1 escribe en el pipe 1.
+        - Proceso 2 lee del pipe 1, transforma el contenido y escribe en el pipe 2.
+        - Proceso 3 lee del pipe 2 y lo imprime.
 
-17. **Redirección de errores:**
+11. **Redirección de errores estándar:**
     - Escribe un programa que redirija el error estándar a un archivo `error.log` y genere un error intencionado (por ejemplo, intentando abrir un archivo inexistente).
 
-18. **Leer comandos desde un archivo:**
-    - Implementa un programa que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
+12. **Concatenar archivos usando pipes:**
+    - Usa un pipe para leer dos archivos `file1.txt` y `file2.txt` y concatenar sus contenidos en la salida estándar.
 
-19. **Ejecutar comandos con `execve`:**
+13. **Ejecutar comandos con `execve`:**
     - Escribe un programa que use `execve` para ejecutar el comando `ls` y redirija su salida a un archivo.
 
-20. **Simulación de shell básica:**
+14. **Leer comandos desde un archivo:**
+    - Implementa un programa que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
+
+15. **Simulación de shell básica:**
     - Escribe un programa en C que implemente un mini shell con soporte para:
-      - Redirección de entrada (`<`).
-      - Redirección de salida (`>`).
-      - Pipes (`|`).
+        - Redirección de entrada (`<`).
+        - Redirección de salida (`>`).
+        - Pipes (`|`).
+
+16. **Contar líneas en un archivo:**
+    - Escribe un programa que lea un archivo `input.txt` y cuente el número de líneas, imprimiendo el resultado en la salida estándar.
+
+17. **Transformar texto leído con pipes:**
+    - Crea un programa que lea texto de un archivo `input.txt`, pase el texto por un pipe para convertirlo a mayúsculas y escriba el resultado en `output.txt`.
+
+18. **Duplicar salida con `tee`:**
+    - Escribe un programa que simule el comando `tee`, copiando la salida estándar tanto a un archivo como a la pantalla.
+
+19. **Simular `cat` con redirección:**
+    - Escribe un programa que simule el comportamiento de `cat`, leyendo un archivo y escribiendo su contenido en la salida estándar.
+
+20. **Comunicación entre procesos con pipes:**
+    - Implementa un programa donde dos procesos se comuniquen usando un pipe:
+        - El proceso 1 escribe un mensaje.
+        - El proceso 2 lo lee, modifica el mensaje y lo imprime en pantalla.
+
+
+
+
 
