@@ -1,0 +1,119 @@
+# Ejercicios de Descriptores de Archivo y Pipes
+
+#➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en Bash──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
+
+1. **Redirección básica de salida:**
+   - Redirige la salida del comando `ls` a un archivo llamado `output.txt`.
+
+   ls > output.txt
+
+#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+2. **Redirección básica de entrada:**
+   - Usa el comando `wc -l` para contar las líneas de un archivo llamado `input.txt`.
+
+	wc -l < ejerc_enunciados.txt 
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+3. **Redirección de entrada y salida:**
+   - Usa el comando `sort` para ordenar las líneas de `input.txt` y guarda el resultado en `sorted.txt`.
+
+   sort < ejerc_enunciados.txt > sorted.txt
+
+1.	< input.txt: Redirige el contenido de input.txt como entrada para el comando sort.
+2.	> sorted.txt: Redirige la salida ordenada del comando sort al archivo sorted.txt.
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+4. **Pipe básico:**
+   - Combina los comandos `ls` y `wc -l` usando un pipe para contar el número de archivos en un directorio.
+
+	ls | wc -l
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+5. **Redirección con append:**
+   - Ejecuta el comando `date` y agrega el resultado al archivo `log.txt`.
+
+   date > log.txt
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+6. **Pipes múltiples:**
+   - Encuentra todos los archivos `.c` en el directorio actual, ordénalos alfabéticamente y cuenta cuántos hay usando `find`, `sort` y `wc`.
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+7. **Tuberías y errores:**
+   - Redirige tanto la salida estándar como el error estándar del comando `ls nonexistentfile` a `errors.txt`.
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+8. **Combinando redirecciones:**
+   - Redirige la salida estándar de `echo Hello` al archivo `hello.txt`, luego redirige el contenido de `hello.txt` como entrada a `cat`.
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+9. **Pipe avanzado:**
+   - Usa `grep` para buscar líneas que contengan la palabra "pipe" en `input.txt` y redirige el resultado al archivo `results.txt`.
+
+   #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+10. **Redirección de descriptor específico:**
+    - Ejecuta un script que escriba mensajes a los descriptores de archivo 1, 2, y 3, y redirige cada uno a diferentes archivos.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+11. **Concatenar la salida de dos comandos:**
+    - Usa un pipe para combinar la salida de los comandos `cat input.txt` y `echo "Nueva Línea"` en un archivo llamado `combined.txt`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+12. **Dividir la salida de un comando:**
+    - Usa un pipe para redirigir la salida de `ls -l` a dos archivos diferentes (`file1.txt` y `file2.txt`) utilizando el comando `tee`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+13. **Redirigir y anexar:**
+    - Escribe un comando que redirija la salida estándar del comando `echo "Texto adicional"` al final de un archivo `output.txt`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+14. **Ignorar salida estándar:**
+    - Ejecuta el comando `ls` y redirige su salida estándar a `/dev/null` para que no se muestre en la terminal.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+15. **Combinar salida estándar y errores:**
+    - Usa `ls nonexistentfile` para generar un error y redirige tanto la salida estándar como el error estándar al archivo `output.log`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+16. **Pipe con filtrado:**
+    - Usa un pipe para pasar la salida de `ps aux` al comando `grep bash` y redirige el resultado al archivo `bash_processes.txt`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+17. **Procesar varias entradas con un pipe:**
+    - Usa el comando `cat` para combinar los archivos `file1.txt` y `file2.txt`, y pasa la salida al comando `sort` para ordenarla. Guarda el resultado en `sorted_combined.txt`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+18. **Duplicar la salida de un comando:**
+    - Usa un pipe con el comando `tee` para redirigir la salida de `echo "Hola mundo"` tanto a la pantalla como al archivo `output.txt`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+19. **Usar descriptor de archivo específico:**
+    - Ejecuta un script que redirija el descriptor 3 hacia un archivo `custom_fd_output.txt` y escribe datos en ese descriptor con `echo "Mensaje" >&3`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+20. **Error intencionado y manejo con tuberías:**
+    - Intenta listar un archivo inexistente con `ls nonexistentfile` y pasa el error estándar al comando `grep "No such"` para filtrarlo. Guarda el resultado en `errors_filtered.txt`.
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+
+
+

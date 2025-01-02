@@ -1,0 +1,73 @@
+# Ejercicios de Descriptores de Archivo y Pipes
+
+#➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en Bash──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
+
+1. **Redirección básica de salida:**
+   - Redirige la salida del comando `ls` a un archivo llamado `output.txt`.
+
+2. **Redirección básica de entrada:**
+   - Usa el comando `wc -l` para contar las líneas de un archivo llamado `input.txt`.
+
+3. **Redirección de entrada y salida:**
+   - Usa el comando `sort` para ordenar las líneas de `input.txt` y guarda el resultado en `sorted.txt`.
+
+4. **Pipe básico:**
+   - Combina los comandos `ls` y `wc -l` usando un pipe para contar el número de archivos en un directorio.
+
+5. **Redirección con append:**
+   - Ejecuta el comando `date` y agrega el resultado al archivo `log.txt`.
+
+6. **Pipes múltiples:**
+   - Encuentra todos los archivos `.c` en el directorio actual, ordénalos alfabéticamente y cuenta cuántos hay usando `find`, `sort` y `wc`.
+
+7. **Tuberías y errores:**
+   - Redirige tanto la salida estándar como el error estándar del comando `ls nonexistentfile` a `errors.txt`.
+
+8. **Combinando redirecciones:**
+   - Redirige la salida estándar de `echo Hello` al archivo `hello.txt`, luego redirige el contenido de `hello.txt` como entrada a `cat`.
+
+9. **Pipe avanzado:**
+   - Usa `grep` para buscar líneas que contengan la palabra "pipe" en `input.txt` y redirige el resultado al archivo `results.txt`.
+
+10. **Redirección de descriptor específico:**
+    - Ejecuta un script que escriba mensajes a los descriptores de archivo 1, 2, y 3, y redirige cada uno a diferentes archivos.
+
+
+#➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en C──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
+
+11. **Abrir y cerrar archivos:**
+    - Escribe un programa que abra un archivo `file.txt`, lea su contenido y lo imprima en la salida estándar.
+
+12. **Redirección con `dup2`:**
+    - Redirige la salida estándar para que escriba en un archivo llamado `output.txt`.
+
+13. **Pipe básico:**
+    - Implementa un programa que cree un pipe, escriba "Hola, pipe!" en un extremo y lo lea del otro extremo para imprimirlo en pantalla.
+
+14. **Multiprocesos con `fork` y pipes:**
+    - Crea un programa donde el proceso padre escriba en el pipe y el proceso hijo lea del pipe e imprima el contenido.
+
+15. **Redirección combinada:**
+    - Usa `dup2` para redirigir tanto la salida estándar como la entrada estándar a un archivo diferente.
+
+16. **Pipes múltiples:**
+    - Implementa un programa que use dos pipes para conectar tres procesos:
+      - Proceso 1 escribe en el pipe 1.
+      - Proceso 2 lee del pipe 1, transforma el contenido y escribe en el pipe 2.
+      - Proceso 3 lee del pipe 2 y lo imprime.
+
+17. **Redirección de errores:**
+    - Escribe un programa que redirija el error estándar a un archivo `error.log` y genere un error intencionado (por ejemplo, intentando abrir un archivo inexistente).
+
+18. **Leer comandos desde un archivo:**
+    - Implementa un programa que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
+
+19. **Ejecutar comandos con `execve`:**
+    - Escribe un programa que use `execve` para ejecutar el comando `ls` y redirija su salida a un archivo.
+
+20. **Simulación de shell básica:**
+    - Escribe un programa en C que implemente un mini shell con soporte para:
+      - Redirección de entrada (`<`).
+      - Redirección de salida (`>`).
+      - Pipes (`|`).
+
