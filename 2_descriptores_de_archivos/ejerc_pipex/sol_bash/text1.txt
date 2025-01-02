@@ -1,0 +1,4 @@
+Este es un mensaje en stdout
+Este es un mensaje en stdout
+Este es un mensaje en stdout
+Este es un mensaje en stdout

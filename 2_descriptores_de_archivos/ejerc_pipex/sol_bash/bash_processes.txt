@@ -1,0 +1,5 @@
+root         273  0.0  0.0   4784  3296 ?        Ss   16:55   0:00 /bin/bash /snap/ubuntu-desktop-installer/1286/bin/subiquity-server
+mzolotar     379  0.0  0.0   6388  5392 pts/0    Ss+  16:55   0:00 -bash
+mzolotar     456  0.0  0.0   6232  4928 pts/1    S+   16:55   0:00 -bash
+mzolotar     761  0.0  0.0   6444  5504 pts/5    Ss   16:57   0:00 /bin/bash --init-file /home/mzolotar/.vscode-server/bin/fabdb6a30b49f79a7aba0f2ad9df9b399473380f/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+mzolotar   17098  0.0  0.0   4028  2136 pts/5    S+   18:05   0:00 grep --color=auto bash

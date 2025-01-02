@@ -21,8 +21,9 @@
 
    sort < ejerc_enunciados.txt > sorted.txt
 
-1.	< input.txt: Redirige el contenido de input.txt como entrada para el comando sort.
-2.	> sorted.txt: Redirige la salida ordenada del comando sort al archivo sorted.txt.
+   man sort: Write sorted concatenation of all FILE(s) to standard output. With no FILE, or when FILE is -, read standard input.
+   1.	< input.txt: Redirige el contenido de input.txt como entrada para el comando sort.
+   2.	> sorted.txt: Redirige la salida ordenada del comando sort al archivo sorted.txt.
 
    #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
@@ -41,79 +42,176 @@
    #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 6. **Pipes múltiples:**
-   - Encuentra todos los archivos `.c` en el directorio actual, ordénalos alfabéticamente y cuenta cuántos hay usando `find`, `sort` y `wc`.
+   - Encuentra todos los archivos `.txt` en el directorio actual, ordénalos alfabéticamente y cuenta cuántos hay usando `find`, `sort` y `wc`.
+
+   ls *.txt 2>error.log | sort | wc -l
+      (2>error.log: Oculta mensajes de error si no se encuentran archivos .txt.)
+
+   find *.txt | sort | wc -l
+      (no busca de fotma recursiva, solo en dir actual)
+
+   find . -name "*.txt" | sort | wc -l
+      (Busca todos los archivos con extensión .txt en el directorio actual y sus subdirectorios.)
 
    #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 7. **Tuberías y errores:**
-   - Redirige tanto la salida estándar como el error estándar del comando `ls nonexistentfile` a `errors.txt`.
+   - Redirige tanto la salida estándar como el error estándar del comando `ls nonexistentfile` a `errors.log`.
+
+   ls noexiste &> errors.log
 
    #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 8. **Combinando redirecciones:**
    - Redirige la salida estándar de `echo Hello` al archivo `hello.txt`, luego redirige el contenido de `hello.txt` como entrada a `cat`.
 
+   echo "hello" > hello.txt 
+   cat < hello.txt
+
    #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 9. **Pipe avanzado:**
    - Usa `grep` para buscar líneas que contengan la palabra "pipe" en `input.txt` y redirige el resultado al archivo `results.txt`.
+
+   grep "pipe" < input.txt > result.txt
+
+alternativas más directa:
+   grep "pipe" input.txt > result.txt
 
    #✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 10. **Redirección de descriptor específico:**
     - Ejecuta un script que escriba mensajes a los descriptores de archivo 1, 2, y 3, y redirige cada uno a diferentes archivos.
 
+      # Escribir en el descriptor de archivo 1 (stdout)
+      echo "Este es un mensaje en stdout" >&1 >> text1.txt
+      # Escribir en el descriptor de archivo 2 (stderr)
+      echo "Este es un mensaje de error" >&2 >> error_3.log
+
+      # Abrir el descriptor 3 para redirigirlo a un archivo
+      exec 3> text3.txt
+      # Escribir en el descriptor de archivo 3 (descriptor adicional)
+      echo "Este es un mensaje en el descriptor 3 o no" >&3 
+      # Cerrar el descriptor 3 después de la ejecución
+      exec 3>&-
+
+
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 11. **Concatenar la salida de dos comandos:**
     - Usa un pipe para combinar la salida de los comandos `cat input.txt` y `echo "Nueva Línea"` en un archivo llamado `combined.txt`.
+
+    cat input.txt > combined.txt && echo "nueva linea" >> combined.txt
+
+    (Usa ">>" para evitar sobrescribir el archivo.)
 
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 12. **Dividir la salida de un comando:**
     - Usa un pipe para redirigir la salida de `ls -l` a dos archivos diferentes (`file1.txt` y `file2.txt`) utilizando el comando `tee`.
 
+      man tee:  tee - read from standard input and write to standard output and files. Copy standard input to each FILE, and also to standard output.
+      tee [OPTION]... [FILE]...
+      -a, --append
+              append to the given FILEs, do not overwrite
+
+      ls -l | tee -a > file1.txt file2.txt
+      (de esta forma el contenido de ls -l  solo se vera en los archivos y en la terminal no)
+
+
+      ls -l | tee -a file1.txt file2.txt
+      (de esta forma el contenido de ls -l se vera en los archivos y en la terminal)
+
+
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 13. **Redirigir y anexar:**
     - Escribe un comando que redirija la salida estándar del comando `echo "Texto adicional"` al final de un archivo `output.txt`.
+
+    echo "texto adicional" >> combined.txt
 
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 14. **Ignorar salida estándar:**
     - Ejecuta el comando `ls` y redirige su salida estándar a `/dev/null` para que no se muestre en la terminal.
 
+      nota:
+      Redirige la salida estándar de ls al archivo especial /dev/null.
+      /dev/null es un "sumidero" donde cualquier entrada es descartada.
+      Como resultado, la salida estándar de ls no se muestra en la terminal ni se guarda en ningún archivo.
+
+    ls > /dev/null 
+
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 15. **Combinar salida estándar y errores:**
     - Usa `ls nonexistentfile` para generar un error y redirige tanto la salida estándar como el error estándar al archivo `output.log`.
+
+    ls noexiste &> output.log
 
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 16. **Pipe con filtrado:**
     - Usa un pipe para pasar la salida de `ps aux` al comando `grep bash` y redirige el resultado al archivo `bash_processes.txt`.
 
+    man ps:
+      ps - report a snapshot of the current processes.
+       ps displays information about a selection of the active processes.  If you want a repetitive update of the selection and the displayed information, use top
+       instead.
+
+       This version of ps accepts several kinds of options:
+
+       1   UNIX options, which may be grouped and must be preceded by a dash.
+       2   BSD options, which may be grouped and must not be used with a dash.
+       3   GNU long options, which are preceded by two dashes.
+
+       Note that ps -aux is distinct from ps aux.  The POSIX and UNIX standards require that ps -aux print all processes owned by a user named x, as well as printing
+       all processes that would be selected by the -a option.  If the user named x does not exist, this ps may interpret the command as ps aux instead and print a
+       warning.  This behavior is intended to aid in transitioning old scripts and habits.  It is fragile, subject to change, and thus should not be relied upon.
+
+      ps aux | grep "bash" >> bash_processes.txt
+
+
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 17. **Procesar varias entradas con un pipe:**
-    - Usa el comando `cat` para combinar los archivos `file1.txt` y `file2.txt`, y pasa la salida al comando `sort` para ordenarla. Guarda el resultado en `sorted_combined.txt`.
+    - Usa el comando `cat` para combinar los archivos `file1.txt` y `file2.txt`, 
+    y pasa la salida al comando `sort` para ordenarla. Guarda el resultado en `sorted_combined.txt`.
+
+  cat file1.txt file2.txt | sort >> sorted_combined.txt
 
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 18. **Duplicar la salida de un comando:**
     - Usa un pipe con el comando `tee` para redirigir la salida de `echo "Hola mundo"` tanto a la pantalla como al archivo `output.txt`.
 
+    man tee: tee - read from standard input and write to standard output and files
+
+   echo "Hola Mundo" | tee output.txt
+
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 19. **Usar descriptor de archivo específico:**
     - Ejecuta un script que redirija el descriptor 3 hacia un archivo `custom_fd_output.txt` y escribe datos en ese descriptor con `echo "Mensaje" >&3`.
 
+    #abrir descriptor 3:
+    exec 3> custom_fd_output.txt
+    #escribir en descriptor 3:
+    echo "mensaje para fd 3" >&3
+    #cerrar desc 3:
+    exec 3>&-
+
+
 	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 20. **Error intencionado y manejo con tuberías:**
-    - Intenta listar un archivo inexistente con `ls nonexistentfile` y pasa el error estándar al comando `grep "No such"` para filtrarlo. Guarda el resultado en `errors_filtered.txt`.
+    - Intenta listar un archivo inexistente con `ls nonexistentfile`
+     y pasa el error estándar al comando `grep "No such"` para filtrarlo. Guarda el resultado en `errors_filtered.txt`.
 
-	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆end:⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
+   ls noexist 2>&1 | grep "No such" >> errors_filtered.txt
+
+
+	#✦❖⋆━━❖⋆✦━━❖⋆✦•✦━━❖⋆⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆ END :⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆⋆❖━━✦•✦━━❖⋆✦━━❖⋆✦━━❖⋆#
 
 
 

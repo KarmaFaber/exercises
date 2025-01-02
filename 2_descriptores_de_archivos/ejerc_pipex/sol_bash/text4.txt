@@ -1,0 +1,3 @@
+]633;E;echo "Este es un mensaje en stdout 1";d6118565-1485-42ac-ada7-ee0dcc539040]633;CEste es un mensaje en stdout 1
+Este es un mensaje en stdout 2
+Este es un mensaje en stdout 3

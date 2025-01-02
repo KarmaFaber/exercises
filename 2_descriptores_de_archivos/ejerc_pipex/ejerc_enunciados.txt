@@ -2,10 +2,10 @@
 
 #➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en Bash──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
 
-1. **Redirección básica de salida:**
+1. **Redirección básica de salida:** OK
    - Redirige la salida del comando `ls` a un archivo llamado `output.txt`.
 
-2. **Redirección básica de entrada:**
+2. **Redirección básica de entrada:** OK
    - Usa el comando `wc -l` para contar las líneas de un archivo llamado `input.txt`.
 
 3. **Redirección de entrada y salida:**
@@ -66,16 +66,19 @@
 
 #➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en C──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
 
-1. **Abrir y cerrar archivos:**
+0. **gnl_stdout** OK
+    - coger los datos de fd 1 y mandarlos a un archivo. 
+
+1. **Abrir y cerrar archivos:** OK
     - Escribe un programa que abra un archivo `file.txt`, lea su contenido y lo imprima en la salida estándar.
 
-2. **Crear y escribir en un archivo:**
+2. **Crear y escribir en un archivo:** OK
     - Implementa un programa que cree un archivo `output.txt` y escriba "Hola, mundo!" en él.
 
-3. **Leer desde la entrada estándar y escribir en un archivo:**
+3. **Leer desde la entrada estándar y escribir en un archivo:**  OK-VER 0_ejerc.c
     - Escribe un programa que lea texto desde la entrada estándar y lo guarde en un archivo llamado `input_copy.txt`.
 
-4. **Copiar el contenido de un archivo:**
+4. **Copiar el contenido de un archivo:** - OK
     - Escribe un programa que copie el contenido de `source.txt` a `destination.txt`.
 
 5. **Redirección de salida estándar:**

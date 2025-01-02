@@ -1,0 +1,26 @@
+-rw-r--r-- 1 mzolotar mzolotar    0 Jan  2 17:29 cat
+-rw-r--r-- 1 mzolotar mzolotar    0 Jan  2 17:29 cat
+-rw-r--r-- 1 mzolotar mzolotar    0 Jan  2 17:54 file1.txt
+-rw-r--r-- 1 mzolotar mzolotar    0 Jan  2 17:54 file1.txt
+-rw-r--r-- 1 mzolotar mzolotar    0 Jan  2 17:54 file2.txt
+-rw-r--r-- 1 mzolotar mzolotar    0 Jan  2 17:54 file2.txt
+-rw-r--r-- 1 mzolotar mzolotar    9 Jan  2 17:30 hello.txt
+-rw-r--r-- 1 mzolotar mzolotar    9 Jan  2 17:30 hello.txt
+-rw-r--r-- 1 mzolotar mzolotar   10 Jan  2 17:38 result.txt
+-rw-r--r-- 1 mzolotar mzolotar   10 Jan  2 17:38 result.txt
+-rw-r--r-- 1 mzolotar mzolotar   29 Jan  2 12:42 log.txt
+-rw-r--r-- 1 mzolotar mzolotar   29 Jan  2 12:42 log.txt
+-rw-r--r-- 1 mzolotar mzolotar   39 Jan  2 17:37 input.txt
+-rw-r--r-- 1 mzolotar mzolotar   39 Jan  2 17:37 input.txt
+-rw-r--r-- 1 mzolotar mzolotar   51 Jan  2 17:43 combined.txt
+-rw-r--r-- 1 mzolotar mzolotar   51 Jan  2 17:43 combined.txt
+-rw-r--r-- 1 mzolotar mzolotar   52 Jan  2 17:13 error.log
+-rw-r--r-- 1 mzolotar mzolotar   52 Jan  2 17:13 error.log
+-rw-r--r-- 1 mzolotar mzolotar   56 Jan  2 17:25 errors.log
+-rw-r--r-- 1 mzolotar mzolotar   56 Jan  2 17:25 errors.log
+-rw-r--r-- 1 mzolotar mzolotar 3730 Jan  2 12:38 sorted.txt
+-rw-r--r-- 1 mzolotar mzolotar 3730 Jan  2 12:38 sorted.txt
+-rw-r--r-- 1 mzolotar mzolotar 7600 Jan  2 17:54 ejerc_soluc_bash.txt
+-rw-r--r-- 1 mzolotar mzolotar 7600 Jan  2 17:54 ejerc_soluc_bash.txt
+total 40
+total 40
