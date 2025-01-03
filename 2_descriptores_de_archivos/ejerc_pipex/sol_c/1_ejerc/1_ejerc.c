@@ -1,6 +1,7 @@
 /*
 1. **Abrir y cerrar archivos:**
-    - Escribe un programa que abra un archivo `file.txt`, lea su contenido y lo imprima en la salida estándar.
+    - Escribe un programa que abra un archivo `file.txt`, 
+    lea su contenido y lo imprima en la salida estándar.
 
 cc -Wall -Werror -Wextra 1_ejerc.c -o 1_ejerc
 */

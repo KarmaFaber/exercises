@@ -1,42 +1,86 @@
 /*
-5. **Redirección de salida estándar:**
-    - Escribe un programa en C que redirija la salida estándar (stdout) a un archivo llamado stdout_redirect.txt utilizando la función dup.
-    ejemplo bash: "ls > list.tx"
+5.0 **Redirección de salida estándar: dup(), dup2()**
+    Escribe un programa en C que cree un archivo llamado output1.txt y redirija la salida estándar a este archivo. 
+    Luego, utiliza printf para escribir la frase "Hello, world!" en el archivo.
+    Después de escribir, asegúrate de restaurar la salida estándar al terminal.
 
-Objetivo:
-El programa debe:
+    Pista: Usa dup, dup2 y STDOUT_FILENO.
 
-Abrir o crear un archivo llamado stdout_redirect.txt en modo de escritura.
-Utilizar dup para duplicar el descriptor de archivo de stdout y redirigirlo al archivo stdout_redirect.txt.
-Escribir algunos mensajes a la salida estándar y asegurarse de que estos mensajes se escriban en el archivo stdout_redirect.txt en lugar de en la consola.
-Restaurar la salida estándar original después de realizar la redirección.
-Requisitos:
-El archivo stdout_redirect.txt debe ser creado o sobrescrito si ya existe.
-El programa debe redirigir la salida estándar utilizando dup para lograr que todo lo que normalmente se imprimiría en la consola se escriba en el archivo.
-El programa debe restaurar la salida estándar original utilizando dup2.
-Formato de entrada:
-El programa no necesita entrada de usuario.
-Salida esperada:
-El archivo stdout_redirect.txt debe contener los mensajes que el programa haya intentado imprimir a la salida estándar.
-
-
-NOTAS:
-
-man dup:
-dup, dup2, dup3 - duplicate a file descriptor
-
-int dup(int oldfd);
-int dup2(int oldfd, int newfd);
-int dup3(int oldfd, int newfd, int flags);
-
-
-
-cc -Wall -Werror -Wextra 5.1_ejerc.c -o 5.1_ejerc
+cc -Wall -Werror -Wextra 5.0_ejerc.c -o 5.0_ejerc
 */
 
 #include <stdio.h> //perror
-#include <unistd.h> // read, write, dup2
+#include <unistd.h> // read, write, dup2, dup
 #include <fcntl.h> // open
 #include <stdlib.h> //exit
 
+
+int main (void)
+{
+    int fd;
+    int saved_stdout;
+
+    //open
+    fd = open("output1.txt",  O_RDWR | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1)
+    {
+        perror ("error al abrir o crear file");
+        return (1);
+    }
+
+    //save STDOUT_FILENO
+    saved_stdout = dup(STDOUT_FILENO);
+    if (saved_stdout == -1)
+    {
+        perror ("error al duplicar stdout");
+        close(fd);
+        return (1);
+    }
+
+    //redirigir stdout al archivo
+    if (dup2(fd, STDOUT_FILENO) == -1)
+    {
+        perror("error al duplicar stdout");
+        close(fd);
+        close(saved_stdout);
+        return (1);    
+    }
+    close(fd);
+
+    //Escribir al archivo (redirigido stdout)
+    printf("hola Mundo de unicornios: esto va al archivo\n");
+
+    //
+    fflush(stdout); // Asegurarse de que el búfer de stdout se vacíe
+
+
+    // Restaurar stdout original
+    if (dup2(saved_stdout, STDOUT_FILENO) == -1)
+    {
+        perror("Error al restaurar stdout");
+        close(saved_stdout);
+        return (1);
+    }
+    close(saved_stdout); // Cerrar el descriptor duplicado
+
+    printf("ester mensaje va a la consola\n");
+
+    return (0);
+}
+
+/*
+se imprimen los dos mensajen en consola en vez de 1 en archivo y 1 en consola:
+error y solucion: buffer de stdout no se libera -> solucion: liberar el buffer de stdoput con fflush(stdout);
+
+El comportamiento que describes ocurre porque el búfer de salida estándar 
+(stdout) no se vacía inmediatamente cuando usas la redirección en un programa en C. 
+Los mensajes que se imprimen en consola son enviados al búfer de stdout, y cuando rediriges 
+stdout a un archivo, el contenido de ese búfer podría no haberse escrito aún en el archivo antes de que se restaure la redirección.
+
+La razón detrás de que los mensajes sigan apareciendo en la consola incluso después de redirigir stdout es 
+que el mensaje ya estaba en el búfer de stdout antes de que se hiciera la redirección. La redirección de stdout 
+afecta solo a los mensajes posteriores que se impriman después de realizar la redirección.
+
+Para solucionar este problema, puedes forzar el vaciado del búfer de stdout antes de 
+restaurarlo usando la función fflush(stdout), que vacía el búfer de salida estándar.*/
 

@@ -2,10 +2,10 @@
 
 #➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en Bash──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
 
-1. **Redirección básica de salida:** OK
+1. **Redirección básica de salida:** 
    - Redirige la salida del comando `ls` a un archivo llamado `output.txt`.
 
-2. **Redirección básica de entrada:** OK
+2. **Redirección básica de entrada:** 
    - Usa el comando `wc -l` para contar las líneas de un archivo llamado `input.txt`.
 
 3. **Redirección de entrada y salida:**
@@ -93,23 +93,69 @@
     -escrive un programa usando fucnion execve(), access y variebles de entorno.
     -formato main: int main(int argc, char *argv[], char *envp[])
 
-5.1 **Redirección de salida estándar: dup()**
-    -  Escribe un programa en C que redirija la salida estándar (stdout) a un archivo llamado stdout_redirect.txt utilizando la función dup.
+5.0 **Redirección de salida estándar: dup(), dup2()** - OK
+    Escribe un programa en C que cree un archivo llamado output1.txt y redirija la salida estándar a este archivo. Luego, utiliza printf para escribir la frase "Hello, world!" en el archivo. Después de escribir, asegúrate de restaurar la salida estándar al terminal.
+    Pista: Usa dup, dup2 y STDOUT_FILENO.
 
-5.1 **Redirección de salida estándar: dup2**
-    - Usa `dup2` para redirigir la salida estándar a un archivo llamado `stdout_redirect.txt`.
+5.1 **Redirección de salida estándar: dup(),  dup2()** -OK
+    Escribe un programa que redirija temporalmente la salida estándar a un archivo llamado temp_output.txt, 
+    escriba dos líneas de texto en el archivo, y luego restaure la salida estándar para escribir "Redirection complete" en la terminal.
+    Asegúrate de que el programa no elimine el contenido existente en el archivo, y agrega la línea "This is appended text.".
+    Pista: Usa dup, dup2 y STDOUT_FILENO.
 
-6. **Redirección de entrada estándar:**
-    - Redirige la entrada estándar para que lea desde un archivo `input.txt`.
+5.2 **Redirección de salida estándar: dup(),  dup2()** -OK
+    Escribe un programa en C con una función llamada write_message_to_file. 
+    Esta función debe recibir el nombre de un archivo como argumento, redirigir la salida estándar al archivo, 
+    y luego escribir el mensaje "Message written by function." dentro del archivo. Después de la ejecución de la función, 
+    el programa debe restaurar la salida estándar y escribir "Operation completed" en la terminal.
+    Pista: Usa funciones auxiliares como dup y dup2 para gestionar los descriptores de archivo.
+
+6.0 **Redirección de entrada estándar:**-OK
+    - Leer desde un Archivo en Lugar de la Terminal. 
+	Redirige la entrada estándar para que lea desde un archivo `input.txt`.
+    -ejemplo bash: wc -w < input.txt
+
+6.1 **Redirección de entrada estándar:**-OK
+    Simular Entrada desde un Archivo. 
+    Escribe un programa que cree un archivo llamado simulated_input.txt, escriba la línea "42", y 
+    luego redirija la entrada estándar a este archivo. 
+    Usa scanf para leer el número del archivo e imprime su doble en la terminal.
+
+6.2 **Redirección de entrada estándar:** -OK
+    Redirección Temporal de Entrada. 
+    Escribe un programa que redirija temporalmente la entrada estándar a un archivo llamado temp_input.txt, 
+    lea una línea de texto del archivo y la almacene en un buffer. 
+    Luego restaura la entrada estándar y muestra el contenido leído en la terminal.
 
 7. **Pipe básico:**
     - Implementa un programa que cree un pipe, escriba "Hola, pipe!" en un extremo y lo lea del otro extremo para imprimirlo en pantalla.
+    -ejemplo bash: echo "Hola, pipe!" | cat
 
 8. **Multiprocesos con `fork` y pipes:**
     - Crea un programa donde el proceso padre escriba en el pipe y el proceso hijo lea del pipe e imprima el contenido.
 
-9. **Redirección combinada:**
-    - Usa `dup2` para redirigir tanto la salida estándar como la entrada estándar a archivos diferentes.
+9.0 **Redirección combinada:** -OK
+    Copiar Contenido de un Archivo a Otro: 
+    Escribe un programa que redirija la entrada estándar a un archivo llamado source.txt y la salida estándar 
+    a un archivo llamado destination.txt. El programa debe leer el contenido de source.txt y copiarlo a destination.txt.
+
+9.1 **Redirección combinada:**-OK
+    escribir y leer datos de stdin, guardarlos en un archivo e imprimirlos en terminal. 
+
+9.2 **Redirección combinada:**-OK
+    Modificar Texto Durante la Copia. 
+    Escribe un programa que redirija la entrada estándar a un archivo llamado input.txt y la salida estándar a 
+    un archivo llamado output.txt. El programa debe leer línea por línea el contenido de input.txt, convertirlo a mayúsculas, 
+    y escribir el resultado en output.txt.
+
+9.3 **Redirección combinada:**-OK
+   Simular un Filtro entre Archivos. 
+   Escribe un programa que redirija la entrada estándar a un archivo llamado input.txt y 
+   la salida estándar a un archivo llamado filtered_output.txt. El programa debe leer el contenido de input.txt, 
+   eliminar todas las vocales, y escribir el texto resultante en filtered_output.txt
+
+9.4 **delete file con unlink**-OK
+    -usar fucnion unlink en un programa. 
 
 10. **Pipes múltiples:**
     - Implementa un programa que use dos pipes para conectar tres procesos:

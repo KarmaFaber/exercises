@@ -1,0 +1,5 @@
+6.2 **Redirección de entrada estándar:**
+    Redirección Temporal de Entrada. 
+    Escribe un programa que redirija temporalmente la entrada estándar a un archivo llamado temp_input.txt, 
+    lea una línea de texto del archivo y la almacene en un buffer. 
+    Luego restaura la entrada estándar y muestra el contenido leído en la terminal.
