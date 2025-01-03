@@ -9,6 +9,8 @@ cc -Wall -Werror -Wextra 4_ejerc.c -o 4_ejerc
 #include <stdio.h> //perror
 #include <unistd.h> // read
 #include <fcntl.h> // open
+#include <string.h> // strerror
+#include <errno.h>	//errno+referencias de error
 
 int main (void)
 {
@@ -19,14 +21,21 @@ int main (void)
 
 	//open
 	//open fd_1:
-	fd_1 = open ("source.txt", O_RDONLY);
+	fd_1 = open ("sources.txt", O_RDONLY);
 	if (fd_1 == -1)
+	{
+		perror(strerror(ENOENT));
 		return (1);
+	}
 	
 	//open fd_2:
 	fd_2 = open ("destination.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd_2 == -1)
+	{
+		perror(strerror(errno));
 		return (1);
+
+	}
 
 
 	//read

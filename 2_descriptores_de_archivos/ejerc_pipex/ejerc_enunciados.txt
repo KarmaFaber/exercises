@@ -78,10 +78,25 @@
 3. **Leer desde la entrada estándar y escribir en un archivo:**  OK-VER 0_ejerc.c
     - Escribe un programa que lea texto desde la entrada estándar y lo guarde en un archivo llamado `input_copy.txt`.
 
-4. **Copiar el contenido de un archivo:** - OK
+4.0 **Copiar el contenido de un archivo:** - OK
     - Escribe un programa que copie el contenido de `source.txt` a `destination.txt`.
 
-5. **Redirección de salida estándar:**
+4.1 **uso funcion execve()** -OK
+    -escrive un programa usando fucnion execve().
+    -formato main: int main(void)
+
+4.2 **uso funcion execve()** -OK
+    -escrive un programa usando fucnion execve().
+    -formato main: int main(void)
+
+4.3 **uso funcion execve() y access**  -OK  
+    -escrive un programa usando fucnion execve(), access y variebles de entorno.
+    -formato main: int main(int argc, char *argv[], char *envp[])
+
+5.1 **Redirección de salida estándar: dup()**
+    -  Escribe un programa en C que redirija la salida estándar (stdout) a un archivo llamado stdout_redirect.txt utilizando la función dup.
+
+5.1 **Redirección de salida estándar: dup2**
     - Usa `dup2` para redirigir la salida estándar a un archivo llamado `stdout_redirect.txt`.
 
 6. **Redirección de entrada estándar:**
@@ -114,7 +129,11 @@
 14. **Leer comandos desde un archivo:**
     - Implementa un programa que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
 
-15. **Simulación de shell básica:**
+15.0 **Simulación de shell básica:**
+    -escribe programa con el comando: <ejemplo.txt grep "main" | wc -w >outfile.txt
+	- usa fucnion execve() de C.
+
+15.1 **Simulación de shell básica:**
     - Escribe un programa en C que implemente un mini shell con soporte para:
         - Redirección de entrada (`<`).
         - Redirección de salida (`>`).
