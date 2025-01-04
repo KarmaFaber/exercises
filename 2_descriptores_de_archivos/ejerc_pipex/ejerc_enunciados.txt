@@ -127,12 +127,20 @@
     lea una línea de texto del archivo y la almacene en un buffer. 
     Luego restaura la entrada estándar y muestra el contenido leído en la terminal.
 
-7. **Pipe básico:**
+7.0 **Pipe básico-> pipe sin fork:**-       OK
     - Implementa un programa que cree un pipe, escriba "Hola, pipe!" en un extremo y lo lea del otro extremo para imprimirlo en pantalla.
-    -ejemplo bash: echo "Hola, pipe!" | cat
+    - ejemplo bash: echo "Hola, pipe!" | cat 
+    - ejemplo bach: ls | wc -l
 
-8. **Multiprocesos con `fork` y pipes:**
+7.1 **Pipe básico-> pipe con fork:**-OK
+    - Implementa un programa que cree un pipe, escriba "Hola, pipe!" en un extremo y lo lea del otro extremo para imprimirlo en pantalla.
+    - Crea un programa donde el proceso padre lea en el pipe y el proceso hijo escriba del pipe e imprima el contenido.
+    - ejemplo bash: echo "Hola, pipe!" | cat 
+    - ejemplo bach: ls | wc -l
+
+8.0 **Multiprocesos con `fork` y pipes && wait o waitpid:**-OK
     - Crea un programa donde el proceso padre escriba en el pipe y el proceso hijo lea del pipe e imprima el contenido.
+    - utiliza las fucniones wait o waitpid
 
 9.0 **Redirección combinada:** -OK
     Copiar Contenido de un Archivo a Otro: 
@@ -166,10 +174,13 @@
 11. **Redirección de errores estándar:**
     - Escribe un programa que redirija el error estándar a un archivo `error.log` y genere un error intencionado (por ejemplo, intentando abrir un archivo inexistente).
 
-12. **Concatenar archivos usando pipes:**
+12.0 **Concatenar archivos usando pipes:**
     - Usa un pipe para leer dos archivos `file1.txt` y `file2.txt` y concatenar sus contenidos en la salida estándar.
 
-13. **Ejecutar comandos con `execve`:**
+12.1 **Concatenar archivos usando pipes:**
+    - Usa un pipe para leer dos archivos `file1.txt` y `file2.txt` y concatenar sus contenidos en el archivo output.txt
+
+13. **Ejecutar comandos con `execve`:** -OK- VER EJERC 4.1, 4.2, 4.3 Y 6.0
     - Escribe un programa que use `execve` para ejecutar el comando `ls` y redirija su salida a un archivo.
 
 14. **Leer comandos desde un archivo:**

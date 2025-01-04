@@ -13,7 +13,7 @@
 #include <unistd.h> // read, write, dup2, dup
 #include <fcntl.h> // open
 #include <stdlib.h> //exit
-#include <string.h>
+#include <string.h> // strlen
 
 
 int main (void)
