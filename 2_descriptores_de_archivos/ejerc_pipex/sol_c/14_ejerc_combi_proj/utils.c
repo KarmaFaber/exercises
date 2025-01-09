@@ -6,7 +6,7 @@
 /*   By: mzolotar <mzolotar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:33:57 by mzolotar          #+#    #+#             */
-/*   Updated: 2025/01/09 13:48:36 by mzolotar         ###   ########.fr       */
+/*   Updated: 2025/01/09 19:37:22 by mzolotar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,17 @@ void modif_and_write_buffer(int fd, char *buffer)
 }
 
 
+void	free_split_vars(char **split_to_free)
+{
+	int	i;
+
+	if (!split_to_free)
+		return ;
+	i = 0;
+	while (split_to_free[i])
+	{
+		free(split_to_free[i]);
+		i++;
+	}
+	free(split_to_free);
+}

@@ -49,7 +49,6 @@ int main (void)
     }
     buffer[readed_bytes] = '\0'; 
 
-
 	//	write
 	int i=0;
 	while(buffer[i] != '\0')
@@ -57,8 +56,6 @@ int main (void)
 		write(fd_2, &buffer[i], 1);
 		i++;
 	}
-
-
 	//close
 	if(close(fd_1) == -1)
 		return (1);

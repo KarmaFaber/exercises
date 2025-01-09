@@ -4,7 +4,6 @@
 
 int main (void)
 {
-	//printf("hola");
 
 	//14.0
 	//read_comm_stdout();
@@ -27,6 +26,6 @@ int main (void)
 	//14.6
 	//cat_sim_outputfile();
 
-
+	
 	return (0);
 }

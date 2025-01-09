@@ -89,13 +89,13 @@ int main (void)
 
 int main (void)
 {
-	char *argv[] = {"/bin/ls", "-l", "-a", NULL};
-	char *envp[] ={NULL};
+	char *exec_argv[] = {"/bin/ls", "-l", "-a", NULL};
+	char *exec_envp[] ={NULL};
 
 
 	printf ("Executing command...\n");
 
-	if (execve("/bin/ls", argv, envp) == -1)
+	if (execve("/bin/ls", exec_argv, exec_envp) == -1)
 	{
 		perror("Error executing ls: No such file or directory");
 		return (1);

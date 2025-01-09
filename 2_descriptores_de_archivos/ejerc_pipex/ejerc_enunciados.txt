@@ -189,17 +189,18 @@ SOLUCIONES: ver archivo ../sol_bash/0_ejerc_soluc_bash.txt
     - Escribe un programa que use `execve` para ejecutar el comando `ls` y redirija su salida a un archivo.
 
 14. ejerc_combi_proj: con libft
+PARTE 1:
 
     14.0 **Leer comandos desde un archivo:**
         - Implementa una funcion que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
 
-OK-    14.1 **Buscar un comando en un archivo:**
+    14.1 **Buscar un comando en un archivo:**
         - Implementa una funcion que lea comandos desde un archivo `commands.txt`, busque un comando concreto, lo ejecute y redirija la salida a un archivo `results.txt`.
     
 OK-    14.2. **Contar líneas en un archivo:** ok -GNL
         - Escribe una funcion que lea un archivo `commands.txt` y cuente el número de líneas, imprimiendo el resultado en la salida estándar.
 
-    14.3. **Contar líneas en un archivo:** 
+OK-    14.3. **Contar líneas en un archivo:** 
         - Escribe una funcion que lea un archivo `commands.txt` y cuente el número de líneas, lo ejecute y redirija la salida a un archivo `results.txt`
 
 ok-    14.4. **Transformar texto leído con pipes:**
@@ -211,13 +212,13 @@ ok-    14.4. **Transformar texto leído con pipes:**
     14.6. **Simular `cat` con redirección:**
     - Escribe una funcion que simule el comportamiento de `cat`, leyendo un archivo y lo redirija la salida a un archivo `results.txt`
 
-15. Ejerc_combi_minishell_proj:
 
-    15.0 **Simulación de shell básica:**
+PARTE 2:
+    14.7 **Simulación de shell básica:**
         -escribe programa con el comando: <ejemplo.txt grep "main" | wc -w >outfile.txt
         - usa fucnion execve() de C.
 
-    15.1 **Simulación de shell básica:**
+    14.8 **Simulación de shell básica:**
         - Escribe un programa en C que implemente un mini shell con soporte para:
             - Redirección de entrada (`<`).
             - Redirección de salida (`>`).
@@ -227,7 +228,7 @@ ok-    14.4. **Transformar texto leído con pipes:**
                     no necesita actualizar el historial.
             - Redirección de salida (`>>`). debe redirigir el output en modo append.
 
-            minishell (subject - parcial):
+            minishell_42_project (subject - parcial):
                 ◦ echo con la opción -n. ( -n no muestra la línea final)
                 ◦ cd solo con una ruta relativa o absoluta.
                 ◦ pwd sin opciones.

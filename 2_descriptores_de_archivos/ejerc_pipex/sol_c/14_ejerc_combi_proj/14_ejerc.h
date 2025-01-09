@@ -39,7 +39,7 @@ void read_comm_file(void);
 int count_lines_gnl(void);
 int	open_fd(char *pathern, int flags, mode_t mode);
 void modif_and_write_buffer(int fd, char *buffer);
-
+void	free_split_vars(char **split_to_free);
 
 #endif
 
