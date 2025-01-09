@@ -37,6 +37,8 @@ int main (void)
 		return (1);
 	}
 
+	printf("pid: %i\n", pid);
+	
 	//operar con procesos padre e hijo: la misma logica que en el ejerc 7.0_ejerc.c
 	if (pid == 0) 	//el hijo escribe
 	{

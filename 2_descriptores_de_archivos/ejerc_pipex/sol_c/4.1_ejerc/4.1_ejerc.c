@@ -65,7 +65,7 @@ int main(void)
 #include <unistd.h> // read, execve
 #include <fcntl.h> // open
 #include <stdio.h>	//printf
-
+/*
 //para un ejecutable propio:
 int main (void)
 {
@@ -83,17 +83,17 @@ int main (void)
 
 	return (0);
 }
-
+*/
 
 //para un ejecutable de bash: ls
-/*
+
 int main (void)
 {
 	char *argv[] = {"/bin/ls", "-l", "-a", NULL};
 	char *envp[] ={NULL};
 
 
-	printf ("Executing ls -l -a...\n");
+	printf ("Executing command...\n");
 
 	if (execve("/bin/ls", argv, envp) == -1)
 	{
@@ -103,4 +103,4 @@ int main (void)
 
 	return (0);
 }
-*/
+

@@ -1,0 +1,8 @@
+echo "---start---"
+ls -l
+echo "------"
+cat archivo.txt
+echo "------"
+pwd
+echo "------"
+echo "---end---"

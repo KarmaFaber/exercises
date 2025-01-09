@@ -24,7 +24,8 @@ int main() {
         exit(1);
     }
 
-    if (pid_hijo == 0) {
+    if (pid_hijo == 0) 
+    {
         // Hijo: Crear el proceso nieto
         close(pipe1[1]);  // El hijo cierra el extremo de escritura del primer pipe
 
@@ -38,6 +39,8 @@ int main() {
             perror("Error al crear el nieto");
             exit(1);
         }
+
+
 
         if (pid_nieto == 0) {
             // Nieto: Crear el proceso visnieto
@@ -60,7 +63,9 @@ int main() {
                 exit(0);
             }
 
-        } else {
+        } 
+        else 
+        {
             // Hijo espera a que el nieto termine
             wait(NULL);
             printf("Soy el hijo (PID: %d), mi nieto ya terminó.\n", getpid());
@@ -73,7 +78,9 @@ int main() {
             exit(0);
         }
 
-    } else {
+    } 
+    else 
+    {
         // Padre: Espera a que el hijo termine
         wait(NULL);
         printf("Soy el padre (PID: %d), mi hijo ya terminó.\n", getpid());

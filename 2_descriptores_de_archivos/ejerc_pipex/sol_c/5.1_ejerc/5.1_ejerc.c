@@ -15,12 +15,6 @@ cc -Wall -Werror -Wextra 5.1_ejerc.c -o 5.1_ejerc
 #include <stdlib.h> //exit
 
 
-#include <stdio.h> //perror
-#include <unistd.h> // read, write, dup2, dup
-#include <fcntl.h> // open
-#include <stdlib.h> //exit
-
-
 int main (void)
 {
     int fd;

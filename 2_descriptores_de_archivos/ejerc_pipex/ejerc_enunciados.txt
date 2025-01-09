@@ -2,6 +2,8 @@
 
 #➤❅──────➼✦➴✦➼──────❅➤•➤──────➼✦➴✦➼──Ejercicios en Bash──➼✦➴✦➼──────➤❅•➤──────➼✦➴✦➼─────➤❅#
 
+SOLUCIONES: ver archivo ../sol_bash/0_ejerc_soluc_bash.txt
+
 1. **Redirección básica de salida:** 
    - Redirige la salida del comando `ls` a un archivo llamado `output.txt`.
 
@@ -165,55 +167,76 @@
 9.4 **delete file con unlink**-OK
     -usar fucnion unlink en un programa. 
 
-10. **Pipes múltiples:**
+10.0 **Pipes:** - ver proyecto pipex
+    - reproducir: grep "a1" < infile | wc -l > outfile 
+
+10.1 **Pipes múltiples:** -OK
     - Implementa un programa que use dos pipes para conectar tres procesos:
         - Proceso 1 escribe en el pipe 1.
         - Proceso 2 lee del pipe 1, transforma el contenido y escribe en el pipe 2.
         - Proceso 3 lee del pipe 2 y lo imprime.
 
-11. **Redirección de errores estándar:**
+11. **Redirección de errores estándar:**-OK
     - Escribe un programa que redirija el error estándar a un archivo `error.log` y genere un error intencionado (por ejemplo, intentando abrir un archivo inexistente).
 
-12.0 **Concatenar archivos usando pipes:**
+12.0 **Concatenar archivos usando pipes:** -OK
     - Usa un pipe para leer dos archivos `file1.txt` y `file2.txt` y concatenar sus contenidos en la salida estándar.
 
-12.1 **Concatenar archivos usando pipes:**
+12.1 **Concatenar archivos usando pipes:** - OK
     - Usa un pipe para leer dos archivos `file1.txt` y `file2.txt` y concatenar sus contenidos en el archivo output.txt
 
 13. **Ejecutar comandos con `execve`:** -OK- VER EJERC 4.1, 4.2, 4.3 Y 6.0
     - Escribe un programa que use `execve` para ejecutar el comando `ls` y redirija su salida a un archivo.
 
-14. **Leer comandos desde un archivo:**
-    - Implementa un programa que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
+14. ejerc_combi_proj: con libft
 
-15.0 **Simulación de shell básica:**
-    -escribe programa con el comando: <ejemplo.txt grep "main" | wc -w >outfile.txt
-	- usa fucnion execve() de C.
+    14.0 **Leer comandos desde un archivo:**
+        - Implementa una funcion que lea comandos desde un archivo `commands.txt`, ejecute cada comando y redirija la salida a un archivo `results.txt`.
 
-15.1 **Simulación de shell básica:**
-    - Escribe un programa en C que implemente un mini shell con soporte para:
-        - Redirección de entrada (`<`).
-        - Redirección de salida (`>`).
-        - Pipes (`|`).
+OK-    14.1 **Buscar un comando en un archivo:**
+        - Implementa una funcion que lea comandos desde un archivo `commands.txt`, busque un comando concreto, lo ejecute y redirija la salida a un archivo `results.txt`.
+    
+OK-    14.2. **Contar líneas en un archivo:** ok -GNL
+        - Escribe una funcion que lea un archivo `commands.txt` y cuente el número de líneas, imprimiendo el resultado en la salida estándar.
 
-16. **Contar líneas en un archivo:**
-    - Escribe un programa que lea un archivo `input.txt` y cuente el número de líneas, imprimiendo el resultado en la salida estándar.
+    14.3. **Contar líneas en un archivo:** 
+        - Escribe una funcion que lea un archivo `commands.txt` y cuente el número de líneas, lo ejecute y redirija la salida a un archivo `results.txt`
 
-17. **Transformar texto leído con pipes:**
-    - Crea un programa que lea texto de un archivo `input.txt`, pase el texto por un pipe para convertirlo a mayúsculas y escriba el resultado en `output.txt`.
+ok-    14.4. **Transformar texto leído con pipes:**
+        - Crea una funcion que lea texto de un archivo `input.txt`, pase el texto por un pipe para convertirlo a mayúsculas y escriba el resultado en `output.txt`.
 
-18. **Duplicar salida con `tee`:**
-    - Escribe un programa que simule el comando `tee`, copiando la salida estándar tanto a un archivo como a la pantalla.
+    14.5. **Simular `cat` con redirección:**
+    - Escribe una funcion que simule el comportamiento de `cat`, leyendo un archivo y escribiendo su contenido en la salida estándar.
 
-19. **Simular `cat` con redirección:**
-    - Escribe un programa que simule el comportamiento de `cat`, leyendo un archivo y escribiendo su contenido en la salida estándar.
+    14.6. **Simular `cat` con redirección:**
+    - Escribe una funcion que simule el comportamiento de `cat`, leyendo un archivo y lo redirija la salida a un archivo `results.txt`
 
-20. **Comunicación entre procesos con pipes:**
-    - Implementa un programa donde dos procesos se comuniquen usando un pipe:
-        - El proceso 1 escribe un mensaje.
-        - El proceso 2 lo lee, modifica el mensaje y lo imprime en pantalla.
+15. Ejerc_combi_minishell_proj:
 
+    15.0 **Simulación de shell básica:**
+        -escribe programa con el comando: <ejemplo.txt grep "main" | wc -w >outfile.txt
+        - usa fucnion execve() de C.
 
+    15.1 **Simulación de shell básica:**
+        - Escribe un programa en C que implemente un mini shell con soporte para:
+            - Redirección de entrada (`<`).
+            - Redirección de salida (`>`).
+            - Pipes (`|`).
+            - Redirección de entrada (`<<`). debe recibir un delimitador, después leer del input de la fuente actual
+                    hasta que una línea que contenga solo el delimitador aparezca. Sin embargo,
+                    no necesita actualizar el historial.
+            - Redirección de salida (`>>`). debe redirigir el output en modo append.
+
+            minishell (subject - parcial):
+                ◦ echo con la opción -n. ( -n no muestra la línea final)
+                ◦ cd solo con una ruta relativa o absoluta.
+                ◦ pwd sin opciones.
+                ◦ export sin opciones.
+                ◦ unset sin opciones.
+                ◦ env sin opciones o argumentos.
+                ◦ exit sin opciones.
+
+/*
 
 
 

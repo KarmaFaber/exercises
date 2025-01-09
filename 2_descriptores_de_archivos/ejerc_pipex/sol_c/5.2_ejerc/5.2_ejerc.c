@@ -52,6 +52,7 @@ void redirect_stdout_to_file(char *file_name, void (*func_to_execute)(void))
     if (dup2(saved_stdout, STDOUT_FILENO) == -1) 
 	{
         perror("Error restoring stdout");
+        return;
     }
     close(saved_stdout);
 }
