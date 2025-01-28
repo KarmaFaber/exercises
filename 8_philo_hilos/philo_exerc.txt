@@ -1,0 +1,21 @@
+
+1. Implementa un programa en C que cree 5 hilos usando pthread y cada hilo imprima su ID.
+2. Escribe un programa que use mutex para proteger una variable compartida entre varios hilos.
+3. Simula un problema sencillo de productor-consumidor usando hilos y mutex.
+4. Implementa una función que mida el tiempo de ejecución de un código usando gettimeofday.
+5. Crea un programa que implemente una cola de tareas donde los hilos consuman las tareas.
+6. Implementa un programa que cree 3 hilos donde cada hilo aumente un contador compartido en 1,000,000 usando mutex.
+7. Crea un simulador de tráfico simple donde los coches (hilos) pasen por un cruce regulado por un semáforo.
+8. Escribe un programa que implemente un semáforo para sincronizar la ejecución de 5 hilos.
+9. Simula una fila de clientes en un banco donde cada cliente es atendido por un cajero (hilos).
+10. Escribe un programa que implemente un temporizador que imprima un mensaje cada segundo durante 10 segundos.
+11. Diseña un programa que cree hilos que ejecuten tareas periódicas (usando usleep).
+12. Implementa un programa que cree un número configurable de hilos que realicen operaciones matemáticas.
+13. Simula el problema de los filósofos cenando con 2 filósofos y 2 tenedores.
+14. Escribe un programa que use pthread_join para esperar a que los hilos terminen antes de finalizar.
+15. Implementa un programa que detecte y evite condiciones de carrera en una sección crítica.
+16. Crea un simulador donde 3 trabajadores compartan recursos limitados (por ejemplo, herramientas).
+17. Escribe un programa que imprima un log de eventos desde múltiples hilos con marcas de tiempo.
+18. Implementa una solución básica para evitar interbloqueos en un sistema de recursos compartidos.
+19. Simula un sistema en el que los hilos simulan tareas como comer, dormir y pensar.
+20. Diseña un programa que permita a los hilos comunicarse usando colas o señales.
