@@ -94,7 +94,7 @@ OK -7. **Tareas periódicas con hilos**: (VER EJERC 1.2_exerc)
     - Representa cada tarea con un estado y sincroniza la transición entre ellos.
 
 13. **Comunicación entre hilos con colas o señales**:
-    - Usa colas de mensajes con mutex o señales (`pthread_cond_t`) para sincronización.
+    - Usa colas de mensajes con mutex para sincronización.
 
 
 
