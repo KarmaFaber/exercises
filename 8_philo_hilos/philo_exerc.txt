@@ -1,21 +1,101 @@
 
-1. Implementa un programa en C que cree 5 hilos usando pthread y cada hilo imprima su ID.
-2. Escribe un programa que use mutex para proteger una variable compartida entre varios hilos.
-3. Simula un problema sencillo de productor-consumidor usando hilos y mutex.
-4. Implementa una función que mida el tiempo de ejecución de un código usando gettimeofday.
-5. Crea un programa que implemente una cola de tareas donde los hilos consuman las tareas.
-6. Implementa un programa que cree 3 hilos donde cada hilo aumente un contador compartido en 1,000,000 usando mutex.
-7. Crea un simulador de tráfico simple donde los coches (hilos) pasen por un cruce regulado por un semáforo.
-8. Escribe un programa que implemente un semáforo para sincronizar la ejecución de 5 hilos.
-9. Simula una fila de clientes en un banco donde cada cliente es atendido por un cajero (hilos).
-10. Escribe un programa que implemente un temporizador que imprima un mensaje cada segundo durante 10 segundos.
-11. Diseña un programa que cree hilos que ejecuten tareas periódicas (usando usleep).
-12. Implementa un programa que cree un número configurable de hilos que realicen operaciones matemáticas.
-13. Simula el problema de los filósofos cenando con 2 filósofos y 2 tenedores.
-14. Escribe un programa que use pthread_join para esperar a que los hilos terminen antes de finalizar.
-15. Implementa un programa que detecte y evite condiciones de carrera en una sección crítica.
-16. Crea un simulador donde 3 trabajadores compartan recursos limitados (por ejemplo, herramientas).
-17. Escribe un programa que imprima un log de eventos desde múltiples hilos con marcas de tiempo.
-18. Implementa una solución básica para evitar interbloqueos en un sistema de recursos compartidos.
-19. Simula un sistema en el que los hilos simulan tareas como comer, dormir y pensar.
-20. Diseña un programa que permita a los hilos comunicarse usando colas o señales.
+/*
+
+cc -Wall -Werror -Wextra x_exerc.c -o x_exerc -lpthread 
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./1.1_exerc
+*/
+
+
+# include "../exerc.h"
+
+
+int main(void)
+{
+
+	return (0);
+}
+
+int main (int argc, char *argv[])
+{
+
+	return (0);
+}
+
+
+//#➵⤐──╌╌➣⋆➣╌╌──⤏➵•➵⤐──╌╌➣⋆➣╌╌── philo_exercises: ──╌╌➣⋆➣╌╌──⤏➵•➵⤐──╌╌➣⋆➣╌╌➔#
+OK -0. **ejemplo para evitar data race. 
+
+OK -1.0 **Crear 5 hilos con pthread y que cada hilo imprima su ID**:
+   - Usa la librería `pthread`.
+   - Define una función que los hilos ejecutarán.
+   - Crea 5 hilos con `pthread_create` y pasa el ID como argumento.
+   - Usa `pthread_join` para esperar a que terminen.
+
+OK -1.1 **crear n hilos pasados por argumento**
+	- Usa la librería `pthread`.
+   - Define una función que los hilos ejecutarán.
+   - Crea n>1 hilos con `pthread_create` y pasa el ID como argumento.
+   - Usa `pthread_join` para esperar a que terminen.
+   - NOTA: los hilos no se imprimen en orden. para ordenar la ejecucion de cada hilo usamos mutex: jer ejerc 1.2
+
+OK -1.2 **crear n hilos pasados por argumento con mutex**
+	- Usa la librería pthread.
+    - Define una función que los hilos ejecutarán.
+    - Utiliza una variable compartida para almacenar el turno de ejecución de los hilos.
+    - Protege el acceso a la variable compartida con un pthread_mutex_t para evitar condiciones de carrera.
+    - Crea n > 1 hilos con pthread_create, pasando el ID como argumento.
+    - Usa pthread_join para esperar a que todos los hilos terminen. 
+
+OK- 2. **Uso de mutex para proteger una variable compartida**: (VER EJERC 1.2)
+   - Define una variable compartida en una estructura -> exerc.h.
+   - Usa `pthread_mutex_t` para evitar condiciones de carrera.
+   - Bloquea el mutex antes de modificar la variable y desbloquéalo después.
+
+3. **Medir tiempo de ejecución con gettimeofday**:
+   - Usa `gettimeofday` para obtener el tiempo antes y después de ejecutar una función.
+   - Calcula la diferencia entre ambos valores.
+
+4. **Implementación de una cola de tareas para hilos**:
+   - Define una estructura de datos para la cola.
+   - Usa `pthread_mutex_t` para proteger la cola.
+   - Implementa funciones para agregar y extraer tareas de la cola.
+
+5. **Incrementar un contador en múltiples hilos con mutex**:
+   - Usa `pthread_create` para lanzar varios hilos.
+   - Cada hilo incrementa una variable compartida muchas veces.
+   - Usa un mutex para evitar condiciones de carrera.
+
+6. **Temporizador que imprime un mensaje cada segundo**:
+    - Usa un bucle con `usleep(1000000)` dentro de un hilo.
+
+OK -7. **Tareas periódicas con hilos**: (VER EJERC 1.2_exerc)
+    - Usa `usleep` dentro de un hilo en bucle.
+
+8. **Hilos que realizan operaciones matemáticas**:
+    - Define una función que reciba números y devuelva el resultado.
+    - Usa `pthread_create` para lanzar hilos que ejecuten la función.
+
+9.0 **Simulación de los filósofos con 2 filósofos y 2 tenedores**:
+    - Usa `pthread_mutex_t` para representar los tenedores.
+    - Controla el acceso a los tenedores con `pthread_mutex_lock` y `pthread_mutex_unlock`.
+
+9.1  **Simulación de los filósofos con 3 filósofos y 3 tenedores**:
+    - Usa `pthread_mutex_t` para representar los tenedores.
+    - Controla el acceso a los tenedores con `pthread_mutex_lock` y `pthread_mutex_unlock`.
+
+10. **Registro de eventos con marcas de tiempo**:
+    - Usa `gettimeofday` para generar timestamps en logs de eventos de hilos.
+
+11. **Evitar interbloqueos en recursos compartidos**:
+    - Usa una estrategia de orden de adquisición de recursos.
+    - Evita que un hilo tome un recurso y espere otro indefinidamente.
+
+12. **Simulación de tareas como comer, dormir y pensar**:
+    - Representa cada tarea con un estado y sincroniza la transición entre ellos.
+
+13. **Comunicación entre hilos con colas o señales**:
+    - Usa colas de mensajes con mutex o señales (`pthread_cond_t`) para sincronización.
+
+
+
+
