@@ -51,29 +51,21 @@ OK- 2. **Uso de mutex para proteger una variable compartida**: (VER EJERC 1.2)
    - Usa `pthread_mutex_t` para evitar condiciones de carrera.
    - Bloquea el mutex antes de modificar la variable y desbloquéalo después.
 
-3. **Medir tiempo de ejecución con gettimeofday**:
+OK -3. **Medir tiempo de ejecución con gettimeofday**:
    - Usa `gettimeofday` para obtener el tiempo antes y después de ejecutar una función.
    - Calcula la diferencia entre ambos valores.
 
-4. **Implementación de una cola de tareas para hilos**:
+OK- 4. **Implementación de una cola de tareas para hilos**:
    - Define una estructura de datos para la cola.
    - Usa `pthread_mutex_t` para proteger la cola.
    - Implementa funciones para agregar y extraer tareas de la cola.
 
-5. **Incrementar un contador en múltiples hilos con mutex**:
-   - Usa `pthread_create` para lanzar varios hilos.
-   - Cada hilo incrementa una variable compartida muchas veces.
-   - Usa un mutex para evitar condiciones de carrera.
-
-6. **Temporizador que imprime un mensaje cada segundo**:
+OK -6. **Temporizador que imprime un mensaje cada segundo**:
     - Usa un bucle con `usleep(1000000)` dentro de un hilo.
 
 OK -7. **Tareas periódicas con hilos**: (VER EJERC 1.2_exerc)
     - Usa `usleep` dentro de un hilo en bucle.
 
-8. **Hilos que realizan operaciones matemáticas**:
-    - Define una función que reciba números y devuelva el resultado.
-    - Usa `pthread_create` para lanzar hilos que ejecuten la función.
 
 9.0 **Simulación de los filósofos con 2 filósofos y 2 tenedores**:
     - Usa `pthread_mutex_t` para representar los tenedores.
