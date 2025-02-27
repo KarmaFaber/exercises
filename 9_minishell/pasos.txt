@@ -1,0 +1,158 @@
+pasos toeknizacion:
+
+La tokenización en Bash es el primer paso que realiza el shell al procesar un comando. 
+Se encarga de dividir la línea de entrada en unidades llamadas tokens, que luego se interpretarán como palabras clave, nombres de comandos, argumentos, operadores, etc.
+
+1. Proceso de Tokenización en Bash
+	0. Eliminación de espacios en blanco iniciales y finales. El shell ignora espacios, tabs y nuevas líneas al principio y al final del comando. Esto no afecta a la tokenización directamente, pero sí prepara el comando para que sea procesado correctamente.
+	1. Expansión de Alias:
+		alias ll='ls -l'
+		ll	
+	2. División en palabras según reglas de delimitación: espacios o comillas. 
+	Espacios y comillas: Los espacios separan los tokens, y las comillas permiten que se mantenga una cadena con espacios como un solo argumento. A veces las comillas se quitan tokenizando como comando y no como argumento: "ls"|"wc" "-l" o "ls"
+		1. Espacios como delimitadores: Separan los tokens.
+		2. Comillas como delimitadores: Las comillas permiten que los argumentos con espacios se traten como un solo token. 
+		Las comillas también pueden ser manipuladas mediante el carácter de escape (\).
+			→ Bash da por hecho que el primer token es comando. 
+			→ si hay comando + "algo con comillas" 	-> entre comillas siempre ira el argumento/s( variabes con extencion, agrumento de echo, path_naeme, etc. )
+			→ si no hay comando 					-> entre comillas se revisa como comando, quitando las comillas. Ver caso de comillas + espacios, a continuación. 
+				→ "ls" == ls 		→ se ejecuta y se comporta igual que ls sin comillas
+				→ 'env' == env 		→ se ejecuta y se comporta igual que env sin comillas	
+				→ "touch"			→ se tokeniza como comando pero falla al no encontrar el argumento de su patron: command + file_operand
+				
+			1. Comillas y espacios combinados: si un argumento tiene espacios pero está rodeado por comillas, el shell lo considera como una única palabra.
+				→ "ls -l" 	 		→ se ejecuta como comando y se comporta: ls -l: command not found
+				→ "ls " 	 		→ se ejecuta como comando y se comporta: Command 'ls ' not found, did you mean: ...
+
+			2. Comillas dobles ("): Lo que está dentro se trata como un "único argumento" (vex explicaion anterior sobre comando o arguemnto entre comillas), respetando espacios, pero las variables y los comandos dentro se expanden. Ejemplo: "ls -l".
+				
+				'mi nombre es $USER' → se clasificara como comando sin expancion	→ mi nombre es \$USER: command not found
+				"mi nombre es $USER" → se clasificara como comando con expancion	→ mi nombre es mzolotar: command not found
+
+			3. Comillas simples ('): Todo dentro de las comillas simples es tratado literalmente, sin expansión de variables o comandos.
+
+				"$USER" → "entre comillas" se clasificara como comando con expanción		→ $USER se expande  			→	 mzolotar: command not found
+				$USER  →  se clasificara como comando con expanción							→ $USER se expande  			→	 mzolotar: command not found
+				'$USER' → 'entre comillas' se clasificara como comando con expanción		→ $USER no se expande  			→	 $USER: command not found
+			
+			4. Comillas dentro de comillas: El carácter de escape (\) permite que las comillas dobles dentro de la cadena sean parte del texto, no un delimitador.
+				echo "mi nombre es \$USER" → "entre comillas" se clasificara como argumento de echo	→ $USER no se expandira por \ 			→	mi nombre es $USER
+				echo "mi nombre es $USER"  → "entre comillas" se clasificara como argumento de echo	→ $USER se expandira por " 				→	mi nombre es mzolotar
+				echo 'mi nombre es \$USER' → "entre comillas" se clasificara como argumento de echo	→ $USER no se expandira por '   		→	mi nombre es \$USER
+
+				si no tenemos echo $USER se considerara como comando y seguiras el mismo patron de expancion que se ejemplifica antes. 
+
+	3. Identificación de operadores especiales (primero el mas largo y luego los unitarios: <<<, <<, < o ||, |).
+		1. Si el shell encuentra estos operadores juntos (|| o &&), los trata como un solo token, a menos que haya un separador forzado. 
+		Si estan sin separar por un espacio o comillas o separadores, shell los separa/tokeniza priorizando la regla de revisar operadores de mas largo a mas corto.
+
+			ls|||wc -l	→	["ls", "||", "|", "wc", "-l"].
+
+			Operadores de más de un carácter (||, &&) se reconocen como un solo token automáticamente, de mas largo a mas corto: <<<, << y luego <.
+				&&	→ AND lógico → Ejecuta el segundo comando solo si el primero tiene éxito.
+				||	→ operador lógico de "OR → Se usa para ejecutar un comando solo si el comando anterior falla, es decir, solo si el primer comando devuelve un código de salida diferente de 0 (lo que indica un error o fallo).
+				;;	→ Fin de un caso en case → Marca el final de una opción en una estructura case.
+				>>>	→ No válido pero se tokeniza como >> y >.
+				<<	→ Here-Document → Redirige múltiples líneas de entrada a un comando.
+				<<-	→ Here-Document con eliminación de tabulaciones → Elimina tabulaciones antes de las líneas de entrada en un here-document.
+				&>	→ Redirección de salida y error estándar (Bash).
+
+				>|	→ pipe_type_especial
+				|&	→ pipe_type_especial
+				$|	→ pipe_type_especial
+
+				diferentes tipos de redirecciones ver & combinado, más adelante. 
+				
+		2. Los operadores especiales (|, >, <, &) siempre se separan como tokens aunque no tengan espacio y aunque vallan a continuacion de operadores especiales. 
+				| → Pipe: Redirige la salida estándar de un comando al siguiente comando en la secuencia.
+				> → Redirección de salida: Redirige la salida estándar de un comando a un archivo.
+				< → Redirección de entrada: Redirige la entrada estándar de un archivo a un comando.
+				
+				; → Separador de comandos: Permite ejecutar múltiples comandos en la misma línea, uno tras otro.
+				& → Ejecutar en segundo plano: Se utiliza para ejecutar un comando en segundo plano.
+					el & no se considera un separador de comandos en Bash, pero sí es un operador especial que tiene un significado diferente dependiendo de su contexto.
+						→ Cuando usas el & al final de un comando, el comando se ejecuta en segundo plano (asíncrono) → sleep 5 &
+						→ Si & aparece junto con otros operadores como && o &>, su significado cambia. Por ejemplo:
+							→ && es un operador lógico de "AND" que ejecuta el segundo comando solo si el primero tiene éxito.
+							→ &> es un operador de redirección de salida y error estándar.
+
+			ejemplo:
+			ls|||wc -l
+			Tokenización: ["ls", "||", "|", "wc", "-l"]
+				ls → Comando
+				|| → Operador OR lógico
+				| → Pipe (redirige la salida de || a wc, lo cual es incorrecto)
+				Error de sintaxis: El operador || no produce salida, por lo que no se puede encadenar con |.
+				Resultado: El shell muestra un error de sintaxis
+
+	4. Agrupación de caracteres entre comillas: Si los caracteres están entre comillas, el shell los agrupa y los trata como un único token.
+	5. Expansión de variables y sustitución de comandos. OJO al menejar tipos de varibles en C. En caso de expandirse habra que ver que tipo de varieble es para almacenarlade forma correcta y usarla despues con tipo correcto. 
+		1. Expansión de variables: Las expansiones de variables ocurren cuando se sustituyen las referencias a variables en un comando o expresión con sus valores actuales, Tipos de expanciçon de variebles en BASH:
+			1. Expansión de variables (Variable Expansion): Esto es simplemente la sustitución de una variable por su valor.
+				variable="Hola"
+				echo $variable
+				output: Hola
+			2. Expansión de parámetros (Parameter Expansion):Esto incluye el uso de las variables del entorno, como $HOME, $PATH, etc.
+				echo $HOME
+				output: /home/user
+			3. Expansión de la variable con el prefijo ${}: Se usa para referirse a variables de una forma más explícita.
+				nombre="Juan"
+				echo "Hola ${nombre}"
+				output: Hola Juan
+			4. Expansión de comandos: Permite ejecutar un comando dentro de un valor, y sustituir esa parte del comando con su salida.
+				echo "La fecha de hoy es: $(date)"
+				echo "lista de archivos: $(ls -1)"
+			5. Expansión aritmética: Se usa para realizar operaciones matemáticas dentro de un comando.
+				echo $((5 + 3))
+				output: 8
+			6. Expansión de arreglos: Si usas variables tipo arreglo, puedes expandir sus elementos.
+				array=("uno" "dos" "tres")
+				echo ${array[1]}
+				output: dos
+			7. Expansión de la tilde (~): Se usa para hacer referencia al directorio home del usuario.
+				cd ~ 			→ Te lleva al directorio home del usuario.
+			8. Expansión de comodines (Globbing): Utiliza patrones como *, ?, y [] para coincidir con nombres de archivos en el sistema.
+				ls *.txt			→ Esto lista todos los archivos con la extensión .txt.
+			
+	6. Expansión de comodines (Globbing: * (*.txt), ? (file?.txt), [] (file[123].txt), {} (file{1,2,3}.txt)) == wildcards
+	7. Reconocimiento de redirecciones (>, <, >>, 2>, etc.)
+
+2.0 Expansión: Aquí es cuando las variables son sustituidas por sus valores. En el paso 2 de tokenización, las expansiones de variables y comandos ocurren antes del parsing (análisis sintáctico). Esto asegura que los valores correctos se sustituyan antes de analizar la estructura de los comandos.
+
+2. Paso 2: Parsing (Análisis Sintáctico): El parser toma la lista de tokens y los agrupa en estructuras según la gramática de Bash.
+	1. Reconoce comandos y argumentos:
+		0. check_sintax_error. 
+		1. El shell examina el primer token después de la tokenización:
+			1. Si es un operador especial (|, >, <, <<, ;, &), se trata como un operador y no como un comando. 
+			2. Si es una palabra sin comillas ni operadores, el shell intenta encontrar un comando ejecutable con ese nombre. 
+			Todo lo que sigue después del primer token es considerado un argumento, hasta que aparece un operador lógico o separador que indique la separación entre comandos. 
+			Comandos encadenados: Si hay un operador lógico como &&, ||, ;, etc., el shell lo interpreta como un separador, y lo que sigue después del operador es un nuevo comando, no un argumento.
+				1. Cómo el shell verifica si el primer token es un comando? El shell busca el comando en este orden:
+					1. Alias: Comprueba si el token es un alias definido por el usuario (alias ll='ls -l').
+					2. Palabras clave de shell: Comprueba si es un comando interno (if, for, while, echo).
+					3. Funciones de shell: Comprueba si el usuario definió una función con ese nombre.
+					4. Comandos internos (builtins): Verifica si es un comando incorporado en el shell (cd, exit, set).
+					5. Comandos en el $PATH	
+						1. Busca en los directorios listados en la variable de entorno $PATH.
+						2. Si encuentra un binario con ese nombre, lo ejecuta.
+						3. Si no lo encuentra, muestra un error
+				
+		3. Todo lo que viene después del primer comando se considera un argumento, opción, o archivo hasta que aparece un operador especial.
+		4. Casos especiales: Ambigüedades y prefijos
+			1. Comando con el mismo nombre que un archivo:
+			2. Uso de rutas relativas o absolutas:
+			3. Uso de command, builtin, y type para verificar comandos:
+	2. Construye estructuras sintácticas
+	3. Detecta redirecciones
+	4. Manejo de subprocesos y agrupaciones
+	5. Sustitución de comandos ($(cmd), `cmd`) -> echo "Hoy es $(date)"
+
+3. Ejecución del Comando
+	1. Determina el tipo de comando
+	2. Crea un proceso (si es necesario)
+	3. Manejo de redirecciones
+	4. Espera la finalización del comando
+
+4. Manejo del Estado de Salida
+
+

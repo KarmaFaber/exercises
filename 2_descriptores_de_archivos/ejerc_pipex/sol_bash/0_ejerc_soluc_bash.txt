@@ -44,7 +44,7 @@
 6. **Pipes múltiples:**
    - Encuentra todos los archivos `.txt` en el directorio actual, ordénalos alfabéticamente y cuenta cuántos hay usando `find`, `sort` y `wc`.
 
-   ls *.txt 2>error.log | sort | wc -l
+   ls *.txt 2> error.log | sort | wc -l
       (2>error.log: Oculta mensajes de error si no se encuentran archivos .txt.)
 
    find *.txt | sort | wc -l

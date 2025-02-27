@@ -108,6 +108,7 @@ exec 3>&-
 Ejercicio 6: Leer desde un descriptor de archivo
 Usa el descriptor de archivo 3 para leer datos desde un archivo.
 Crea un archivo leer.txt y ábrelo con el descriptor 3 para leer su contenido línea por línea.
+
 Explicacion:
 echo -e: El -e permite la interpretación de caracteres especiales. Sin esta opción, \n se imprimiría como los dos caracteres \ y n, en lugar de ser interpretado como un salto de línea.
 
